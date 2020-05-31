@@ -1,26 +1,22 @@
 {
     "name": "aminetiyal/tell",
-    "description": "Blog platform for laravel",
-    "keywords": [
-        "aminetiyal",
-        "tell"
-    ],
+    "description": "Blog integration for laravel",
+    "keywords": ["blog", "tell"],
     "homepage": "https://github.com/aminetiyal/tell",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
             "name": "Amine TIYAL",
-            "email": "test@yopmail.com",
-            "role": "Developer"
+            "email": "aminetiyal@gmail.com",
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/support": "^6.0"
+        "php": "^7.2.5",
+        "illuminate/support": "^6.0|^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.0",
+        "orchestra/testbench": "^4.0|^5.0",
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
