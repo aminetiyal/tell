@@ -1,0 +1,54 @@
+{
+    "name": "aminetiyal/tell",
+    "description": "Blog platform for laravel",
+    "keywords": [
+        "aminetiyal",
+        "tell"
+    ],
+    "homepage": "https://github.com/aminetiyal/tell",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Amine TIYAL",
+            "email": "test@yopmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aminetiyal\\Tell\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aminetiyal\\Tell\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aminetiyal\\Tell\\TellServiceProvider"
+            ],
+            "aliases": {
+                "Tell": "Aminetiyal\\Tell\\TellFacade"
+            }
+        }
+    }
+}
