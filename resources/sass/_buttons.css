@@ -1,0 +1,23 @@
+/* .btn {
+    @apply inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium rounded-md transition duration-150 ease-in-out cursor-pointer
+}
+
+.btn:focus {
+    @apply outline-none
+}
+
+.btn-default {
+    @apply border-gray-300 text-gray-700 bg-white
+}
+
+.btn-default:hover {
+    @apply text-gray-500
+}
+
+.btn-default:focus {
+    @apply shadow-outline-blue border-blue-300
+}
+
+.btn-default:active {
+    @apply text-gray-800 bg-gray-50
+} */

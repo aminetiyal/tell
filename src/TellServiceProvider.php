@@ -30,9 +30,9 @@ class TellServiceProvider extends ServiceProvider
             ], 'views');*/
 
             // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/tell'),
-            ], 'assets');*/
+            $this->publishes([
+                __DIR__.'/../public' => public_path('vendor/tell'),
+            ], 'tell-assets');
 
             // Publishing the translation files.
             /*$this->publishes([

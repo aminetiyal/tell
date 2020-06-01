@@ -1,11 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>TELL - Blog</title>
+    <link rel="stylesheet" href="{{mix('css/tailwind.css','vendor/tell')}}">
 </head>
+
 <body>
-    
+    <script>
+        @auth()
+        window.Laravel = @json(['authenticated' => true, 'user' => auth()->user()])
+        @else
+        window.Laravel = @json(['authenticated' => false, 'user' => null])
+        @endauth
+    </script>
+
+    <div id="app"></div>
+
+    <script src="{{mix('js/main.js','vendor/tell')}}"></script>
 </body>
+
 </html>
