@@ -8,12 +8,12 @@
     "authors": [
         {
             "name": "Amine TIYAL",
-            "email": "aminetiyal@gmail.com",
+            "email": "aminetiyal@gmail.com"
         }
     ],
     "require": {
         "php": "^7.2.5",
-        "illuminate/support": "^6.0|^7.0"
+        "illuminate/support": "^6.8|^7.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0|^5.0",

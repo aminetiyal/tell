@@ -17,11 +17,11 @@ class TellServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tell');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('tell.php'),
+                __DIR__ . '/../config/config.php' => config_path('tell.php'),
             ], 'config');
 
             // Publishing the views.
@@ -50,7 +50,7 @@ class TellServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'tell');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'tell');
 
         // Register the main class to use with the facade
         $this->app->singleton('tell', function () {
