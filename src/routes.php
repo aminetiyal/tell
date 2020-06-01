@@ -1,4 +1,4 @@
 <?php
 
 
-Route::get('tell', function () { return 'tell'; });
+Route::resource('posts', 'Aminetiyal\Tell\Http\Controllers\PostController');
