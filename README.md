@@ -35,10 +35,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-### Security
-
-If you discover any security related issues, please email test@yopmail.com instead of using the issue tracker.
-
 ## Credits
 
 - [Amine TIYAL](https://github.com/aminetiyal)
