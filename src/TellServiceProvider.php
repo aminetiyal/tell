@@ -15,7 +15,7 @@ class TellServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tell');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 

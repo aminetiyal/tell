@@ -11,7 +11,7 @@ class PostController
 
     public function index()
     {
-        //
+        return view('tell::spa');
     }
 
     public function create()
