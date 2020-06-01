@@ -1,4 +1,8 @@
 <?php
 
+Route::namespace('Aminetiyal\Tell\Http\Controllers')->middleware(['web'])->as('tell.')->group(function () {
 
-Route::resource('posts', 'Aminetiyal\Tell\Http\Controllers\PostController');
+    Route::get('posts/{any}', 'SpaController@index')->where('any', '.*');
+    Route::apiResource('posts', 'PostController');
+
+});

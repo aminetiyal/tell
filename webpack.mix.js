@@ -5,6 +5,23 @@ const autoprefixer = require('autoprefixer');
 const postcss = require('postcss-purgecss-laravel')({})
 
 mix
+    .options({
+        uglify: {
+            uglifyOptions: {
+                compress: {
+                    drop_console: true,
+                }
+            }
+        },
+        processCssUrls: false,
+    })
+    .webpackConfig({
+        plugins: [
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+        ],
+    });
+    
+mix
     .setPublicPath('public')
     .js('resources/vue/main.js', 'public/js')
     .postCss('resources/sass/tailwind.css', 'public/css')

@@ -35637,6 +35637,10 @@ video {
   transition-duration: 1000ms
 }
 
+.delay-0 {
+  transition-delay: 0ms
+}
+
 .delay-75 {
   transition-delay: 75ms
 }
@@ -35667,6 +35671,90 @@ video {
 
 .delay-1000 {
   transition-delay: 1000ms
+}
+
+.delay-2000 {
+  transition-delay: 2000ms
+}
+
+.hover\:delay-0:hover {
+  transition-delay: 0ms
+}
+
+.hover\:delay-75:hover {
+  transition-delay: 75ms
+}
+
+.hover\:delay-100:hover {
+  transition-delay: 100ms
+}
+
+.hover\:delay-150:hover {
+  transition-delay: 150ms
+}
+
+.hover\:delay-200:hover {
+  transition-delay: 200ms
+}
+
+.hover\:delay-300:hover {
+  transition-delay: 300ms
+}
+
+.hover\:delay-500:hover {
+  transition-delay: 500ms
+}
+
+.hover\:delay-700:hover {
+  transition-delay: 700ms
+}
+
+.hover\:delay-1000:hover {
+  transition-delay: 1000ms
+}
+
+.hover\:delay-2000:hover {
+  transition-delay: 2000ms
+}
+
+.focus\:delay-0:focus {
+  transition-delay: 0ms
+}
+
+.focus\:delay-75:focus {
+  transition-delay: 75ms
+}
+
+.focus\:delay-100:focus {
+  transition-delay: 100ms
+}
+
+.focus\:delay-150:focus {
+  transition-delay: 150ms
+}
+
+.focus\:delay-200:focus {
+  transition-delay: 200ms
+}
+
+.focus\:delay-300:focus {
+  transition-delay: 300ms
+}
+
+.focus\:delay-500:focus {
+  transition-delay: 500ms
+}
+
+.focus\:delay-700:focus {
+  transition-delay: 700ms
+}
+
+.focus\:delay-1000:focus {
+  transition-delay: 1000ms
+}
+
+.focus\:delay-2000:focus {
+  transition-delay: 2000ms
 }
 
 @media (min-width: 640px) {
@@ -70428,6 +70516,10 @@ video {
     transition-duration: 1000ms
   }
 
+  .sm\:delay-0 {
+    transition-delay: 0ms
+  }
+
   .sm\:delay-75 {
     transition-delay: 75ms
   }
@@ -70458,6 +70550,90 @@ video {
 
   .sm\:delay-1000 {
     transition-delay: 1000ms
+  }
+
+  .sm\:delay-2000 {
+    transition-delay: 2000ms
+  }
+
+  .sm\:hover\:delay-0:hover {
+    transition-delay: 0ms
+  }
+
+  .sm\:hover\:delay-75:hover {
+    transition-delay: 75ms
+  }
+
+  .sm\:hover\:delay-100:hover {
+    transition-delay: 100ms
+  }
+
+  .sm\:hover\:delay-150:hover {
+    transition-delay: 150ms
+  }
+
+  .sm\:hover\:delay-200:hover {
+    transition-delay: 200ms
+  }
+
+  .sm\:hover\:delay-300:hover {
+    transition-delay: 300ms
+  }
+
+  .sm\:hover\:delay-500:hover {
+    transition-delay: 500ms
+  }
+
+  .sm\:hover\:delay-700:hover {
+    transition-delay: 700ms
+  }
+
+  .sm\:hover\:delay-1000:hover {
+    transition-delay: 1000ms
+  }
+
+  .sm\:hover\:delay-2000:hover {
+    transition-delay: 2000ms
+  }
+
+  .sm\:focus\:delay-0:focus {
+    transition-delay: 0ms
+  }
+
+  .sm\:focus\:delay-75:focus {
+    transition-delay: 75ms
+  }
+
+  .sm\:focus\:delay-100:focus {
+    transition-delay: 100ms
+  }
+
+  .sm\:focus\:delay-150:focus {
+    transition-delay: 150ms
+  }
+
+  .sm\:focus\:delay-200:focus {
+    transition-delay: 200ms
+  }
+
+  .sm\:focus\:delay-300:focus {
+    transition-delay: 300ms
+  }
+
+  .sm\:focus\:delay-500:focus {
+    transition-delay: 500ms
+  }
+
+  .sm\:focus\:delay-700:focus {
+    transition-delay: 700ms
+  }
+
+  .sm\:focus\:delay-1000:focus {
+    transition-delay: 1000ms
+  }
+
+  .sm\:focus\:delay-2000:focus {
+    transition-delay: 2000ms
   }
 }
 
@@ -105220,6 +105396,10 @@ video {
     transition-duration: 1000ms
   }
 
+  .md\:delay-0 {
+    transition-delay: 0ms
+  }
+
   .md\:delay-75 {
     transition-delay: 75ms
   }
@@ -105250,6 +105430,90 @@ video {
 
   .md\:delay-1000 {
     transition-delay: 1000ms
+  }
+
+  .md\:delay-2000 {
+    transition-delay: 2000ms
+  }
+
+  .md\:hover\:delay-0:hover {
+    transition-delay: 0ms
+  }
+
+  .md\:hover\:delay-75:hover {
+    transition-delay: 75ms
+  }
+
+  .md\:hover\:delay-100:hover {
+    transition-delay: 100ms
+  }
+
+  .md\:hover\:delay-150:hover {
+    transition-delay: 150ms
+  }
+
+  .md\:hover\:delay-200:hover {
+    transition-delay: 200ms
+  }
+
+  .md\:hover\:delay-300:hover {
+    transition-delay: 300ms
+  }
+
+  .md\:hover\:delay-500:hover {
+    transition-delay: 500ms
+  }
+
+  .md\:hover\:delay-700:hover {
+    transition-delay: 700ms
+  }
+
+  .md\:hover\:delay-1000:hover {
+    transition-delay: 1000ms
+  }
+
+  .md\:hover\:delay-2000:hover {
+    transition-delay: 2000ms
+  }
+
+  .md\:focus\:delay-0:focus {
+    transition-delay: 0ms
+  }
+
+  .md\:focus\:delay-75:focus {
+    transition-delay: 75ms
+  }
+
+  .md\:focus\:delay-100:focus {
+    transition-delay: 100ms
+  }
+
+  .md\:focus\:delay-150:focus {
+    transition-delay: 150ms
+  }
+
+  .md\:focus\:delay-200:focus {
+    transition-delay: 200ms
+  }
+
+  .md\:focus\:delay-300:focus {
+    transition-delay: 300ms
+  }
+
+  .md\:focus\:delay-500:focus {
+    transition-delay: 500ms
+  }
+
+  .md\:focus\:delay-700:focus {
+    transition-delay: 700ms
+  }
+
+  .md\:focus\:delay-1000:focus {
+    transition-delay: 1000ms
+  }
+
+  .md\:focus\:delay-2000:focus {
+    transition-delay: 2000ms
   }
 }
 
@@ -140012,6 +140276,10 @@ video {
     transition-duration: 1000ms
   }
 
+  .lg\:delay-0 {
+    transition-delay: 0ms
+  }
+
   .lg\:delay-75 {
     transition-delay: 75ms
   }
@@ -140042,6 +140310,90 @@ video {
 
   .lg\:delay-1000 {
     transition-delay: 1000ms
+  }
+
+  .lg\:delay-2000 {
+    transition-delay: 2000ms
+  }
+
+  .lg\:hover\:delay-0:hover {
+    transition-delay: 0ms
+  }
+
+  .lg\:hover\:delay-75:hover {
+    transition-delay: 75ms
+  }
+
+  .lg\:hover\:delay-100:hover {
+    transition-delay: 100ms
+  }
+
+  .lg\:hover\:delay-150:hover {
+    transition-delay: 150ms
+  }
+
+  .lg\:hover\:delay-200:hover {
+    transition-delay: 200ms
+  }
+
+  .lg\:hover\:delay-300:hover {
+    transition-delay: 300ms
+  }
+
+  .lg\:hover\:delay-500:hover {
+    transition-delay: 500ms
+  }
+
+  .lg\:hover\:delay-700:hover {
+    transition-delay: 700ms
+  }
+
+  .lg\:hover\:delay-1000:hover {
+    transition-delay: 1000ms
+  }
+
+  .lg\:hover\:delay-2000:hover {
+    transition-delay: 2000ms
+  }
+
+  .lg\:focus\:delay-0:focus {
+    transition-delay: 0ms
+  }
+
+  .lg\:focus\:delay-75:focus {
+    transition-delay: 75ms
+  }
+
+  .lg\:focus\:delay-100:focus {
+    transition-delay: 100ms
+  }
+
+  .lg\:focus\:delay-150:focus {
+    transition-delay: 150ms
+  }
+
+  .lg\:focus\:delay-200:focus {
+    transition-delay: 200ms
+  }
+
+  .lg\:focus\:delay-300:focus {
+    transition-delay: 300ms
+  }
+
+  .lg\:focus\:delay-500:focus {
+    transition-delay: 500ms
+  }
+
+  .lg\:focus\:delay-700:focus {
+    transition-delay: 700ms
+  }
+
+  .lg\:focus\:delay-1000:focus {
+    transition-delay: 1000ms
+  }
+
+  .lg\:focus\:delay-2000:focus {
+    transition-delay: 2000ms
   }
 }
 
@@ -174804,6 +175156,10 @@ video {
     transition-duration: 1000ms
   }
 
+  .xl\:delay-0 {
+    transition-delay: 0ms
+  }
+
   .xl\:delay-75 {
     transition-delay: 75ms
   }
@@ -174834,6 +175190,90 @@ video {
 
   .xl\:delay-1000 {
     transition-delay: 1000ms
+  }
+
+  .xl\:delay-2000 {
+    transition-delay: 2000ms
+  }
+
+  .xl\:hover\:delay-0:hover {
+    transition-delay: 0ms
+  }
+
+  .xl\:hover\:delay-75:hover {
+    transition-delay: 75ms
+  }
+
+  .xl\:hover\:delay-100:hover {
+    transition-delay: 100ms
+  }
+
+  .xl\:hover\:delay-150:hover {
+    transition-delay: 150ms
+  }
+
+  .xl\:hover\:delay-200:hover {
+    transition-delay: 200ms
+  }
+
+  .xl\:hover\:delay-300:hover {
+    transition-delay: 300ms
+  }
+
+  .xl\:hover\:delay-500:hover {
+    transition-delay: 500ms
+  }
+
+  .xl\:hover\:delay-700:hover {
+    transition-delay: 700ms
+  }
+
+  .xl\:hover\:delay-1000:hover {
+    transition-delay: 1000ms
+  }
+
+  .xl\:hover\:delay-2000:hover {
+    transition-delay: 2000ms
+  }
+
+  .xl\:focus\:delay-0:focus {
+    transition-delay: 0ms
+  }
+
+  .xl\:focus\:delay-75:focus {
+    transition-delay: 75ms
+  }
+
+  .xl\:focus\:delay-100:focus {
+    transition-delay: 100ms
+  }
+
+  .xl\:focus\:delay-150:focus {
+    transition-delay: 150ms
+  }
+
+  .xl\:focus\:delay-200:focus {
+    transition-delay: 200ms
+  }
+
+  .xl\:focus\:delay-300:focus {
+    transition-delay: 300ms
+  }
+
+  .xl\:focus\:delay-500:focus {
+    transition-delay: 500ms
+  }
+
+  .xl\:focus\:delay-700:focus {
+    transition-delay: 700ms
+  }
+
+  .xl\:focus\:delay-1000:focus {
+    transition-delay: 1000ms
+  }
+
+  .xl\:focus\:delay-2000:focus {
+    transition-delay: 2000ms
   }
 }
 

@@ -17,7 +17,7 @@ class TellServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tell');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->registerRoutes();
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -56,5 +56,15 @@ class TellServiceProvider extends ServiceProvider
         $this->app->singleton('tell', function () {
             return new Tell;
         });
+    }
+
+    /**
+     * Register the package routes.
+     *
+     * @return void
+     */
+    private function registerRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__ . '/routes.php');
     }
 }

@@ -33,10 +33,16 @@ module.exports = {
             },
             fontSize: {
                 'xxs': '.60rem'
+            },
+            transitionDelay: {
+                '0': '0ms',
+                '2000': '2000ms',
             }
         },
     },
-    variants: {},
+    variants: {
+        transitionDelay: ['responsive', 'hover', 'focus']
+    },
     plugins: [
         tailwindUI
     ],

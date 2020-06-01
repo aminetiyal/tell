@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+    <div id="app"></div>
+
     <script>
         @auth()
         window.Laravel = @json(['authenticated' => true, 'user' => auth()->user()])
@@ -18,8 +21,6 @@
         window.Laravel = @json(['authenticated' => false, 'user' => null])
         @endauth
     </script>
-
-    <div id="app"></div>
 
     <script src="{{mix('js/main.js','vendor/tell')}}"></script>
 </body>
