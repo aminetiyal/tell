@@ -12,13 +12,11 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <router-link
-                to="/posts"
-                exact
+              <router-link :to="{name:'posts.index'}" exact
                 class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 active-class="bg-gray-900 text-white"
               >Home</router-link>
-              <router-link to="/posts/create" exact
+              <router-link  :to="{name:'posts.create'}" exact
                 class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 active-class="bg-gray-900 text-white"
               >New</router-link>
@@ -82,10 +80,10 @@
     </div>
     <div v-bind:class="{'block': navbarOpen, 'hidden': !navbarOpen}" class="md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
-        <router-link to="/posts" exact active-class="text-white bg-gray-900"
+        <router-link :to="{name:'posts.index'}" exact active-class="text-white bg-gray-900"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >Home</router-link>
-        <router-link to="/posts/create" exact active-class="text-white bg-gray-900"
+        <router-link :to="{name:'posts.create'}"  exact active-class="text-white bg-gray-900"
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >New</router-link>
       </div>

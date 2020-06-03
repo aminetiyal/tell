@@ -13,22 +13,22 @@ const routes = [
         //meta: {middleware: [authMiddleware]}
     },
     {
-        path: '/posts',
+        path: '/tell',
         name: 'posts.index',
         component: require('../views/Posts/Index').default
     },
     {
-        path: '/posts/create',
+        path: '/tell/create',
         name: 'posts.create',
         component: require('../views/Posts/Create').default
     },
     {
-        path: '/posts/:post',
+        path: '/tell/:post',
         name: 'posts.show',
         component: require('../views/Posts/Show').default
     },
     {
-        path: '/posts/:post/edit',
+        path: '/tell/:post/edit',
         name: 'posts.edit',
         component: require('../views/Posts/Edit').default
     }
