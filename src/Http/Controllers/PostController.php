@@ -27,22 +27,22 @@ class PostController
         return new PostResource($post);
     }
 
-    public function show(TellPost $tellPost)
+    public function show(TellPost $post)
     {
-        return new PostResource($tellPost);
+        return new PostResource($post);
     }
 
-    public function update(Request $request, TellPost $tellPost)
+    public function update(Request $request, TellPost $post)
     {
         // todo: validation and use ->validated() in $request
-        $tellPost->update($request->all());
+        $post->update($request->all());
 
-        return new PostResource($tellPost);
+        return new PostResource($post);
     }
 
-    public function destroy(TellPost $tellPost)
+    public function destroy(TellPost $post)
     {
-        $tellPost->delete();
+        $post->delete();
 
         return response()->json(null, 204);
     }

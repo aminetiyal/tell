@@ -16,7 +16,7 @@ class TellServiceProvider extends ServiceProvider
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tell');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/Migrations');
         $this->registerRoutes();
 
         if ($this->app->runningInConsole()) {

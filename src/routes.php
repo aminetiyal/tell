@@ -1,8 +1,19 @@
 <?php
 
-Route::namespace('Aminetiyal\Tell\Http\Controllers')->middleware(['web'])->as('tell.')->group(function () {
+Route::namespace('Aminetiyal\Tell\Http\Controllers')
+    ->middleware(['web'])
+    ->as('tell.')
+    ->prefix('tell')
+    ->group(function () {
+        Route::get('/', 'SpaController@index')->name('spa.page');
+        Route::get('{any}', 'SpaController@index')->where('any', '.*')->name('spa');
+    });
 
-    Route::get('posts/{any}', 'SpaController@index')->where('any', '.*');
-    Route::apiResource('posts', 'PostController');
-
-});
+Route::namespace('Aminetiyal\Tell\Http\Controllers')
+    ->middleware(['web'])
+    ->as('api.tell.')
+    ->prefix('api/tell')
+    ->group(function () {
+        Route::apiResource('posts', 'PostController')
+            ->parameter('posts','post:slug');
+    });
