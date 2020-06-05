@@ -2,6 +2,7 @@
 
 namespace Aminetiyal\Tell;
 
+use Aminetiyal\Tell\Console\TellInstall;
 use Illuminate\Support\ServiceProvider;
 
 class TellServiceProvider extends ServiceProvider
@@ -40,7 +41,9 @@ class TellServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                TellInstall::class
+            ]);
         }
     }
 

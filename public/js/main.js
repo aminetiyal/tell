@@ -12315,6 +12315,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Templates_MainLayout_Main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Templates/MainLayout/Main */ "./resources/vue/components/Templates/MainLayout/Main.vue");
 /* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/PostService */ "./resources/vue/services/PostService.js");
+/* harmony import */ var _services_TagService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/TagService */ "./resources/vue/services/TagService.js");
 //
 //
 //
@@ -12392,6 +12393,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12411,25 +12413,7 @@ __webpack_require__.r(__webpack_exports__);
         body: "",
         published: false
       },
-      tags: [{
-        name: "Vue.js",
-        language: "JavaScript"
-      }, {
-        name: "Adonis",
-        language: "JavaScript"
-      }, {
-        name: "Rails",
-        language: "Ruby"
-      }, {
-        name: "Sinatra",
-        language: "Ruby"
-      }, {
-        name: "Laravel",
-        language: "PHP"
-      }, {
-        name: "Phoenix",
-        language: "Elixir"
-      }],
+      tags: [],
       editor: {
         type: BalloonEditor,
         config: {
@@ -12454,7 +12438,13 @@ __webpack_require__.r(__webpack_exports__);
 
       _services_PostService__WEBPACK_IMPORTED_MODULE_1__["default"].store(this.post).then(function (_ref) {
         var data = _ref.data;
-        console.log(data.data);
+
+        _this.$router.push({
+          name: "posts.show",
+          params: {
+            post: data.data.slug
+          }
+        });
       })["catch"](function (_ref2) {
         var response = _ref2.response;
         console.log(response.data.errors);
@@ -12468,6 +12458,17 @@ __webpack_require__.r(__webpack_exports__);
     draft: function draft() {
       this.post.published = false;
       this.save();
+    },
+    getTags: function getTags() {
+      var _this2 = this;
+
+      _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].index().then(function (_ref3) {
+        var data = _ref3.data;
+        _this2.tags = data.data;
+      })["catch"](function (_ref4) {
+        var response = _ref4.response;
+        console.log(response.data.errors);
+      });
     }
   },
   watch: {
@@ -12475,7 +12476,9 @@ __webpack_require__.r(__webpack_exports__);
       this.post.slug = this.slugify(this.post.title);
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.getTags();
+  }
 });
 
 /***/ }),
@@ -14418,7 +14421,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-100 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
+                      "inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-blue-100 hover:bg-blue-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
                     on: { click: _vm.draft }
                   },
                   [_vm._v("Draft")]
@@ -32417,6 +32420,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   store: function store(post) {
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api/tell/posts', post);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/vue/services/TagService.js":
+/*!**********************************************!*\
+  !*** ./resources/vue/services/TagService.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ApiService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApiService */ "./resources/vue/services/ApiService.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  index: function index() {
+    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/tell/tags');
   }
 });
 

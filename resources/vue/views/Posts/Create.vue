@@ -4,7 +4,7 @@
       <div class="inline-flex rounded-md shadow">
         <button
           @click="draft"
-          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-100 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-blue-100 hover:bg-blue-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
         >Draft</button>
       </div>
       <div class="ml-3 inline-flex rounded-md shadow">
@@ -78,6 +78,7 @@
 <script>
 import Main from "../../components/Templates/MainLayout/Main";
 import postService from "../../services/PostService";
+import tagService from "../../services/TagService";
 
 export default {
   components: {
@@ -96,14 +97,7 @@ export default {
         body: "",
         published: false
       },
-      tags: [
-        { name: "Vue.js", language: "JavaScript" },
-        { name: "Adonis", language: "JavaScript" },
-        { name: "Rails", language: "Ruby" },
-        { name: "Sinatra", language: "Ruby" },
-        { name: "Laravel", language: "PHP" },
-        { name: "Phoenix", language: "Elixir" }
-      ],
+      tags: [],
       editor: {
         type: BalloonEditor,
         config: {
@@ -158,7 +152,10 @@ export default {
       postService
         .store(this.post)
         .then(({ data }) => {
-          console.log(data.data);
+          this.$router.push({
+            name: "posts.show",
+            params: { post: data.data.slug }
+          });
         })
         .catch(({ response }) => {
           console.log(response.data.errors);
@@ -172,6 +169,16 @@ export default {
     draft() {
       this.post.published = false;
       this.save();
+    },
+    getTags() {
+      tagService
+        .index()
+        .then(({ data }) => {
+          this.tags = data.data;
+        })
+        .catch(({ response }) => {
+          console.log(response.data.errors);
+        });
     }
   },
   watch: {
@@ -179,6 +186,8 @@ export default {
       this.post.slug = this.slugify(this.post.title);
     }
   },
-  mounted() {}
+  mounted() {
+    this.getTags();
+  }
 };
 </script>

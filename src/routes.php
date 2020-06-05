@@ -15,5 +15,8 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->prefix('api/tell')
     ->group(function () {
         Route::apiResource('posts', 'PostController')
-            ->parameter('posts','post:slug');
+            ->parameter('posts', 'post:slug');
+
+        Route::apiResource('tags', 'TagController')
+            ->parameter('tags', 'tag:slug');
     });
