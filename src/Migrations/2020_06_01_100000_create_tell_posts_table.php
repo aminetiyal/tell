@@ -17,7 +17,7 @@ class CreateTellPostsTable extends Migration
             $table->boolean('published')->default(false);
             $table->dateTime('published_at')->nullable();
             $table->string('image')->nullable();
-            $table->foreignId('author_id')->constrained();
+            $table->foreignId('author_id')->constrained(config('tell.users.table'));
             $table->timestamps();
         });
     }

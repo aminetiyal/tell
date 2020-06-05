@@ -10,6 +10,6 @@ class TellPost extends Model
 
     public function author()
     {
-        return $this->belongsTo(config('auth.providers.users.model', 'App\User'));
+        return $this->belongsTo(config('tell.users.model'));
     }
 }

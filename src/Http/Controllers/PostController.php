@@ -2,6 +2,7 @@
 
 namespace Aminetiyal\Tell\Http\Controllers;
 
+use Aminetiyal\Tell\Http\Requests\Posts\StorePostRequest;
 use Aminetiyal\Tell\Http\Resources\PostResource;
 use Aminetiyal\Tell\Models\TellPost;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class PostController
         return PostResource::collection($posts);
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         // todo: validation and use ->validated() in $request
         $post = new TellPost($request->all());
