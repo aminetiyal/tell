@@ -28,6 +28,11 @@ Vue.use(InfiniteLoading,  {
     system: {throttleLimit: 50}
 });
 
+/* CKEditor */
+import CKEditor from '@ckeditor/ckeditor5-vue';
+Vue.use( CKEditor );
+
+
 /* Config */
 Vue.config.productionTip = false
 

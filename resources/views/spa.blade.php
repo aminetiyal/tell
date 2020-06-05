@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <div id="app"></div>
 
     <script>
@@ -20,8 +19,10 @@
         @else
         window.Laravel = @json(['authenticated' => false, 'user' => null])
         @endauth
+
     </script>
 
+    <script src="{{asset('vendor/tell/js/ckeditor5/build/ckeditor.js')}}"></script>
     <script src="{{mix('js/main.js','vendor/tell')}}"></script>
 </body>
 
