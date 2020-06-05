@@ -10,7 +10,7 @@
         ></div>
         <div class="w-2/3 p-4">
           <h1 class="text-gray-900 font-bold text-2xl">{{post.title}}</h1>
-          <p class="mt-2 text-gray-600 text-base">{{postBody}}</p>
+          <p class="mt-2 text-gray-600 text-base">{{post.excerpt}}</p>
           <div class="flex item-center mt-2">
             <p class="mt-2 text-gray-600 text-sm">Published At: {{post.published_at}}</p>
           </div>

@@ -2,8 +2,12 @@
     <div class="min-h-screen flex flex-col">
         <Nav/>
         <div class="flex-grow flex">
-            <div class="w-full flex flex-col ">
-                <PageHeader :title="title"/>
+            <div class="w-full flex flex-col bg-gray-100">
+                <PageHeader :title="title">
+                    <template v-slot:page_buttons>
+                        <slot name="page_buttons"></slot>
+                    </template>
+                </PageHeader>
                 <PageContent>
                     <slot></slot>
                 </PageContent>

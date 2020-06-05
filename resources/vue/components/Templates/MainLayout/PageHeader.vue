@@ -1,9 +1,15 @@
 <template>
-  <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold leading-tight text-gray-900">{{title}}</h1>
+<div class="bg-white shadow">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+      {{title}}
+    </h2>
+    <div class="mt-8 flex lg:flex-shrink-0 lg:mt-0">
+              <slot name="page_buttons"></slot>
     </div>
-  </header>
+  </div>
+</div>
+  
 </template>
 
 <script>

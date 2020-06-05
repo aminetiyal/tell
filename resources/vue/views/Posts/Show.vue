@@ -1,6 +1,6 @@
 <template>
   <Main :title="post.title">
-    {{post}}
+    <div v-html="post.body"></div>
   </Main>
 </template>
 

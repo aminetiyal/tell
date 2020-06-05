@@ -32,6 +32,14 @@ Vue.use(InfiniteLoading,  {
 import CKEditor from '@ckeditor/ckeditor5-vue';
 Vue.use( CKEditor );
 
+/* MultiSelect */
+import Multiselect from 'vue-multiselect'
+Vue.component('multiselect', Multiselect)
+
+/* Helpers */
+import Helpers from './helpers';
+Vue.mixin(Helpers);
+
 
 /* Config */
 Vue.config.productionTip = false

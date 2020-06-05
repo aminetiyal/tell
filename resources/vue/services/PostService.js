@@ -7,5 +7,9 @@ export default {
 
     show(post) {
         return api.get('/api/tell/posts/'+post);
+    },
+
+    store(post) {
+        return api.post('/api/tell/posts', post);
     }
 }

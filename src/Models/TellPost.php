@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TellPost extends Model
 {
-    protected $fillables = ['title', 'excerpt', 'body', 'published'];
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published', 'published_at'];
+
+    public function author()
+    {
+        return $this->belongsTo(config('auth.providers.users.model', 'App\User'));
+    }
 }

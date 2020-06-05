@@ -22,6 +22,7 @@ class PostController
     {
         // todo: validation and use ->validated() in $request
         $post = new TellPost($request->all());
+        $post->author()->associate(auth()->id());
         $post->save();
 
         return new PostResource($post);
