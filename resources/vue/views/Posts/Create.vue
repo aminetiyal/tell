@@ -79,6 +79,7 @@
 import Main from "../../components/Templates/MainLayout/Main";
 import postService from "../../services/PostService";
 import tagService from "../../services/TagService";
+import CKEditorAdapterPlugin from "../../services/CkEditorHttp";
 
 export default {
   components: {
@@ -101,6 +102,7 @@ export default {
       editor: {
         type: BalloonEditor,
         config: {
+          extraPlugins: [CKEditorAdapterPlugin],
           toolbar: {
             items: [
               "heading",

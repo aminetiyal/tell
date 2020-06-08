@@ -17,6 +17,9 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
         Route::apiResource('posts', 'PostController')
             ->parameter('posts', 'post:slug');
 
+        Route::post('/images', 'ImageController@store')->name('images.store');
+
+
         Route::apiResource('tags', 'TagController')
             ->parameter('tags', 'tag:slug');
     });

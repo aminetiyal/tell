@@ -20,6 +20,10 @@
         window.Laravel = @json(['authenticated' => false, 'user' => null])
         @endauth
 
+        window.Laravel.routes = @json([
+            'api.tell.images.store' => route("api.tell.images.store")
+        ])
+
     </script>
 
     <script src="{{asset('vendor/tell/js/ckeditor5/build/ckeditor.js')}}"></script>
