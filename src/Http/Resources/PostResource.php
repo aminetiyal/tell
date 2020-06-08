@@ -14,7 +14,7 @@ class PostResource extends JsonResource
             'excerpt' => $this->excerpt,
             'body' => $this->body,
             'published' => $this->published,
-            'published_at' => $this->published_at,
+            'published_at' => (string) $this->published_at,
             'image' => $this->image,
             'tags' => TagResource::collection($this->whenLoaded('tags')),
             'author' => $this->author,
