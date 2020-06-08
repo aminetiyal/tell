@@ -32293,6 +32293,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/Home.vue */ "./resources/vue/views/Home.vue");
 /* harmony import */ var _loadMiddleware__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loadMiddleware */ "./resources/vue/router/loadMiddleware.js");
+/* harmony import */ var _middlewares_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./middlewares/auth */ "./resources/vue/router/middlewares/auth.js");
+
 
 
 
@@ -32301,8 +32303,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var routes = [{
   path: '/',
   name: 'home',
-  component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"] //meta: {middleware: [authMiddleware]}
-
+  component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: '/tell',
   name: 'posts.index',
@@ -32310,7 +32311,10 @@ var routes = [{
 }, {
   path: '/tell/create',
   name: 'posts.create',
-  component: __webpack_require__(/*! ../views/Posts/Create */ "./resources/vue/views/Posts/Create.vue")["default"]
+  component: __webpack_require__(/*! ../views/Posts/Create */ "./resources/vue/views/Posts/Create.vue")["default"],
+  meta: {
+    middleware: [_middlewares_auth__WEBPACK_IMPORTED_MODULE_4__["default"]]
+  }
 }, {
   path: '/tell/:post',
   name: 'posts.show',
@@ -32318,7 +32322,10 @@ var routes = [{
 }, {
   path: '/tell/:post/edit',
   name: 'posts.edit',
-  component: __webpack_require__(/*! ../views/Posts/Edit */ "./resources/vue/views/Posts/Edit.vue")["default"]
+  component: __webpack_require__(/*! ../views/Posts/Edit */ "./resources/vue/views/Posts/Edit.vue")["default"],
+  meta: {
+    middleware: [_middlewares_auth__WEBPACK_IMPORTED_MODULE_4__["default"]]
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
@@ -32384,6 +32391,28 @@ function loadMiddleware(to, from, next) {
   }
 
   return next();
+}
+
+/***/ }),
+
+/***/ "./resources/vue/router/middlewares/auth.js":
+/*!**************************************************!*\
+  !*** ./resources/vue/router/middlewares/auth.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authMiddleware; });
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../store */ "./resources/vue/store/index.js");
+
+function authMiddleware(_ref) {
+  var next = _ref.next,
+      router = _ref.router;
+  if (!_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.isAuth) next({
+    name: 'posts.index'
+  });else next();
 }
 
 /***/ }),

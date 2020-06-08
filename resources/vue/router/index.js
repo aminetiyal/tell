@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import loadMiddleware from "./loadMiddleware";
+import authMiddleware from "./middlewares/auth";
 
 Vue.use(VueRouter)
 
@@ -10,7 +11,6 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home,
-        //meta: {middleware: [authMiddleware]}
     },
     {
         path: '/tell',
@@ -20,7 +20,8 @@ const routes = [
     {
         path: '/tell/create',
         name: 'posts.create',
-        component: require('../views/Posts/Create').default
+        component: require('../views/Posts/Create').default,
+        meta: {middleware: [authMiddleware]}
     },
     {
         path: '/tell/:post',
@@ -30,7 +31,8 @@ const routes = [
     {
         path: '/tell/:post/edit',
         name: 'posts.edit',
-        component: require('../views/Posts/Edit').default
+        component: require('../views/Posts/Edit').default,
+        meta: {middleware: [authMiddleware]}
     }
 ]
 
