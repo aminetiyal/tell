@@ -11,6 +11,7 @@ class StorePostRequest extends FormRequest
         return [
             'slug' => 'required|string|max:255|unique:tell_posts,slug',
             'title' => 'required|string|max:255',
+            'image' => 'required|string|max:255',
             'tags' => 'sometimes|nullable|array',
             'tags.*.id' => 'sometimes|nullable|integer|exists:tell_tags,id',
             'excerpt' => 'required|string',

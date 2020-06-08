@@ -10,7 +10,7 @@ class TellPost extends Model
 
     protected $with = ['tags'];
 
-    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published', 'published_at'];
+    protected $fillable = ['title', 'slug', 'image', 'excerpt', 'body', 'published', 'published_at'];
 
     protected $casts = ['published' => 'boolean'];
 

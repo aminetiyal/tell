@@ -6,7 +6,7 @@
       >
         <div
           class="w-1/3 bg-cover"
-          style="background-image: url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')"
+          :style="{'background-image': 'url(' + post.image + ')'}"
         ></div>
         <div class="w-2/3 p-4">
           <h1 class="text-gray-900 font-bold text-2xl">{{post.title}}</h1>

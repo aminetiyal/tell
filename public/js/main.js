@@ -12472,6 +12472,19 @@ __webpack_require__.r(__webpack_exports__);
         var response = _ref4.response;
         console.log(response.data.errors);
       });
+    },
+    onFileChanged: function onFileChanged(event) {
+      var _this3 = this;
+
+      var image = event.target.files[0];
+      var formData = new FormData();
+      formData.append("image", image, image.name);
+      axios.post(Laravel.routes['api.tell.images.store'], formData).then(function (res) {
+        console.log(res);
+        _this3.post.image = res.data.url;
+      })["catch"](function (err) {
+        return alert(err);
+      });
     }
   },
   watch: {
@@ -13790,10 +13803,7 @@ var render = function() {
           [
             _c("div", {
               staticClass: "w-1/3 bg-cover",
-              staticStyle: {
-                "background-image":
-                  "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')"
-              }
+              style: { "background-image": "url(" + _vm.post.image + ")" }
             }),
             _vm._v(" "),
             _c("div", { staticClass: "w-2/3 p-4" }, [
@@ -14552,7 +14562,11 @@ var render = function() {
                 _vm._v("Select an image")
               ]),
               _vm._v(" "),
-              _c("input", { staticClass: "hidden", attrs: { type: "file" } })
+              _c("input", {
+                staticClass: "hidden",
+                attrs: { type: "file" },
+                on: { change: _vm.onFileChanged }
+              })
             ],
             1
           )

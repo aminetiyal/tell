@@ -51,7 +51,7 @@
       >
         <font-awesome-icon icon="cloud-upload-alt" size="lg" class="h-8 w-8" />
         <span class="mt-2 text-sm leading-normal">Select an image</span>
-        <input type="file" class="hidden" />
+        <input type="file" class="hidden" @change="onFileChanged"/>
       </label>
     </InputGroup>
 
@@ -181,6 +181,17 @@ export default {
         .catch(({ response }) => {
           console.log(response.data.errors);
         });
+    },
+    onFileChanged(event) {
+      const image = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", image, image.name);
+      axios.post(Laravel.routes['api.tell.images.store'], formData)
+      .then(res => {
+        console.log(res);
+        this.post.image = res.data.url;
+      })
+      .catch(err => alert(err));
     }
   },
   watch: {
