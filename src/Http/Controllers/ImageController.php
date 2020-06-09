@@ -13,6 +13,7 @@ class ImageController
 
     public function store()
     {
+        // TODO: validate image request
         $path = request()->image->store(config('tell.storage.path'), [
             'disk' => config('tell.storage.disk'),
             'visibility' => 'public',
