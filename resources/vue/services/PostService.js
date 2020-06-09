@@ -1,8 +1,8 @@
 import api from './ApiService'
 
 export default {
-    index() {
-        return api.get('/api/tell/posts');
+    index(page = 1, search = "") {
+        return api.get('/api/tell/posts' + '?page=' + page + '&search=' + search);
     },
     show(post) {
         return api.get('/api/tell/posts/' + post);

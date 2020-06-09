@@ -2,20 +2,20 @@
 
 namespace Aminetiyal\Tell\Http\Controllers;
 
+use Aminetiyal\Tell\Http\Requests\Posts\IndexPostRequest;
 use Aminetiyal\Tell\Http\Requests\Posts\StorePostRequest;
 use Aminetiyal\Tell\Http\Requests\Posts\UpdatePostRequest;
 use Aminetiyal\Tell\Http\Resources\PostResource;
 use Aminetiyal\Tell\Models\TellPost;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class PostController
 {
 
-    public function index()
+    public function index(IndexPostRequest $request)
     {
-        $posts = TellPost::live()->paginate(5);
+        $posts = TellPost::live()
+            //->where('title', 'like', '%'.$request->query('search').'%')
+            ->paginate(5);
 
         return PostResource::collection($posts);
     }

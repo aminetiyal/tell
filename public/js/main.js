@@ -12705,36 +12705,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Templates_MainLayout_Main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Templates/MainLayout/Main */ "./resources/vue/components/Templates/MainLayout/Main.vue");
 /* harmony import */ var _components_Posts_Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Posts/Card */ "./resources/vue/components/Posts/Card.vue");
 /* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/PostService */ "./resources/vue/services/PostService.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    InfiniteLoading: vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3___default.a,
     Main: _components_Templates_MainLayout_Main__WEBPACK_IMPORTED_MODULE_0__["default"],
     PostCard: _components_Posts_Card__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      meta: {},
+      page: 1
     };
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts($state) {
       var _this = this;
 
-      _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].index().then(function (response) {
-        _this.posts = response.data.data;
+      _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].index(this.page).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.data.length) {
+          var _this$posts;
+
+          _this.meta = data.meta;
+          _this.page += 1;
+
+          (_this$posts = _this.posts).push.apply(_this$posts, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       });
     }
-  },
-  mounted: function mounted() {
-    this.getPosts();
   }
 });
 
@@ -15082,10 +15115,17 @@ var render = function() {
   return _c(
     "Main",
     { attrs: { title: "Posts" } },
-    _vm._l(_vm.posts, function(post) {
-      return _c("PostCard", { key: post.id, attrs: { post: post } })
-    }),
-    1
+    [
+      _vm._l(_vm.posts, function(post, $index) {
+        return _c("PostCard", { key: $index, attrs: { post: post } })
+      }),
+      _vm._v(" "),
+      _c("infinite-loading", {
+        attrs: { identifier: _vm.search },
+        on: { infinite: _vm.getPosts }
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -33018,7 +33058,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   index: function index() {
-    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/tell/posts');
+    var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    var search = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/tell/posts' + '?page=' + page + '&search=' + search);
   },
   show: function show(post) {
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].get('/api/tell/posts/' + post);
