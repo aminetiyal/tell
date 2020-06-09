@@ -1,7 +1,7 @@
 <template>
   <Main title="Posts">
     <PostCard v-for="(post, $index) in posts" :post="post" :key="$index" />
-    <infinite-loading :identifier="search" @infinite="getPosts">
+    <infinite-loading @infinite="getPosts">
       <!--<div slot="spinner">Loading {{meta.from}} from {{meta.total}}</div>-->
       <!--<div slot="no-more">No more stores, {{meta.total}} in total</div>-->
       <!--<div slot="no-results">No results</div>-->

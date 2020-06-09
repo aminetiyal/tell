@@ -15120,10 +15120,7 @@ var render = function() {
         return _c("PostCard", { key: $index, attrs: { post: post } })
       }),
       _vm._v(" "),
-      _c("infinite-loading", {
-        attrs: { identifier: _vm.search },
-        on: { infinite: _vm.getPosts }
-      })
+      _c("infinite-loading", { on: { infinite: _vm.getPosts } })
     ],
     2
   )
