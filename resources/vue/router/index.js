@@ -1,17 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import loadMiddleware from "./loadMiddleware";
 import authMiddleware from "./middlewares/auth";
 
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: Home,
-    },
     {
         path: '/tell',
         name: 'posts.index',

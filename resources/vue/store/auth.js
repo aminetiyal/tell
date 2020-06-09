@@ -28,7 +28,7 @@ const authModule = ({
             axios.post('/login', credentials)
                 .then(response => {
                     commit('SET_USER', response.data.data)
-                    router.push({name: 'home'})
+                    router.push({name: 'posts.index'})
                 })
                 .catch(error => {
                     console.log(error.response.data.errors);
@@ -38,11 +38,11 @@ const authModule = ({
             axios.post('/logout')
                 .then(response => {
                     commit('CLEAR_USER');
-                    router.push({name: 'login'});
+                    router.push({name: 'posts.index'});
                 })
                 .catch(error => {
                     commit('CLEAR_USER');
-                    router.push({name: 'login'});
+                    router.push({name: 'posts.index'});
                     console.log(error.response.data.errors);
                 })
         },

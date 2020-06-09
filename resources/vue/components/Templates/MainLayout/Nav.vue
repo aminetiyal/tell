@@ -12,11 +12,16 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <router-link :to="{name:'posts.index'}" exact
+              <router-link
+                :to="{name:'posts.index'}"
+                exact
                 class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 active-class="bg-gray-900 text-white"
               >Home</router-link>
-              <router-link  :to="{name:'posts.create'}" exact
+              <router-link
+                :to="{name:'posts.create'}"
+                exact
+                v-if="isAuth"
                 class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 active-class="bg-gray-900 text-white"
               >New</router-link>
@@ -25,21 +30,21 @@
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <div @click="navbarOpen = !navbarOpen" class="ml-3 relative cursor-pointer">
+            <div class="ml-3 relative cursor-pointer">
               <div class="flex items-center">
-                <div class="px-3 py-2 rounded-md text-sm font-medium text-gray-300">{{user.name}}</div>
-                <button
-                  class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
-                >
-                  <img
-                    class="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt
-                  />
-                </button>
+                <a
+                  href="/login"
+                  class="px-3 py-2 rounded-md text-sm font-medium text-gray-300"
+                  v-if="!isAuth"
+                >Login</a>
+                <div
+                  @click="navbarOpen = !navbarOpen"
+                  class="px-3 py-2 rounded-md text-sm font-medium text-gray-300"
+                  v-if="isAuth"
+                >{{user.name}}</div>
               </div>
               <div
-                v-if="navbarOpen"
+                v-if="navbarOpen && isAuth"
                 class="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
               >
                 <div class="py-1 rounded-md bg-white shadow-xs">
@@ -80,15 +85,21 @@
     </div>
     <div v-bind:class="{'block': navbarOpen, 'hidden': !navbarOpen}" class="md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
-        <router-link :to="{name:'posts.index'}" exact active-class="text-white bg-gray-900"
+        <router-link
+          :to="{name:'posts.index'}"
+          exact
+          active-class="text-white bg-gray-900"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >Home</router-link>
-        <router-link :to="{name:'posts.create'}"  exact active-class="text-white bg-gray-900"
+        <router-link
+          v-if="isAuth"
+          :to="{name:'posts.create'}" exact
+          active-class="text-white bg-gray-900"
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >New</router-link>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
-        <div class="flex items-center px-5">
+        <div class="flex items-center px-5" v-if="isAuth">
           <div class="flex-shrink-0">
             <img
               class="h-10 w-10 rounded-full"
@@ -103,19 +114,17 @@
         </div>
         <div class="mt-3 px-2">
           <a
+            v-if="!isAuth"
+            href="/login"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          >Login</a>
+          <a
+            v-if="isAuth"
             href="http://mts.digital.test/admin"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Admin</a>
           <a
-            href="http://www.digital.test/profile"
-            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >Profile</a>
-          <a
-            href="#"
-            @click="fetch"
-            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >Settings</a>
-          <a
+            v-if="isAuth"
             href="#"
             class="btn mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             @click="logout"

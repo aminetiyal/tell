@@ -11,6 +11,15 @@ import store from './store'
 /* Config */
 Vue.config.productionTip = false
 
+/* Global instance */
+Vue.mixin({
+    computed: {
+        isAuth() {
+            return this.$store.getters.isAuth;
+        }
+    }
+})
+
 /* App */
 new Vue({
     router,

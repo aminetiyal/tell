@@ -40,6 +40,8 @@ class PostController
     {
         $post->update($request->validated());
 
+        $post->tags()->sync($request->input('tags'));
+
         return new PostResource($post);
     }
 
