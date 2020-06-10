@@ -36,7 +36,7 @@ class TellPost extends Model
 
     public function scopeLive($query)
     {
-        return $query->published()->where('published_at', '<=', now());
+        return $query->published()->where('published_at', '<=', now()->addHour());
     }
     
     public function scopeScheduled($query)

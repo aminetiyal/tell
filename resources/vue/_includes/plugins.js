@@ -6,11 +6,11 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {
     faUserSecret, faShoppingCart, faArrowRight, faEdit, faTrash, faEye, faMapMarkerAlt, faStar, faStore, faStoreSlash,
-    faHome, faLock, faCartPlus, faSearch, faCloudUploadAlt
+    faHome, faLock, faCartPlus, faSearch, faCloudUploadAlt, faClock, faCalendar
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faUserSecret, faShoppingCart, faCartPlus, faArrowRight, faEdit, faTrash, faEye, faMapMarkerAlt, faStar, faStore,
-    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt)
+    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt, faClock, faCalendar)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
@@ -32,3 +32,15 @@ Vue.use( CKEditor );
 /* MultiSelect */
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
+
+/* VueTimeago */
+import VueTimeago from 'vue-timeago';
+Vue.use(VueTimeago, {
+  name: 'Timeago', // Component name, `Timeago` by default
+  locale: 'en', // Default locale
+  // We use `date-fns` under the hood
+  // So you can use all locales from it
+  locales: {
+    // 'zh-CN': require('date-fns/locale/zh_cn'),
+  }
+})

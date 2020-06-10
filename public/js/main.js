@@ -11943,6 +11943,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["post"],
   methods: {
@@ -11954,6 +11958,14 @@ __webpack_require__.r(__webpack_exports__);
     postBody: function postBody() {
       var body = this.stripTags(this.post.body);
       return body.length > 100 ? body.substring(0, 100) + "..." : body;
+    },
+    readingTime: function readingTime() {
+      var minutes = 0;
+      var contentString = JSON.stringify(this.post.body);
+      var words = contentString.split(" ").length;
+      var wordsPerMinute = 200;
+      minutes = Math.ceil(words / wordsPerMinute);
+      return minutes + ' min read';
     }
   }
 });
@@ -14042,9 +14054,29 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "flex item-center mt-2" }, [
-                _c("p", { staticClass: "text-gray-600 text-sm" }, [
-                  _vm._v("Published At: " + _vm._s(_vm.post.published_at))
-                ])
+                _c(
+                  "p",
+                  { staticClass: "text-gray-600 text-sm" },
+                  [
+                    _c("font-awesome-icon", {
+                      staticClass: "text-gray-400",
+                      attrs: { icon: "clock" }
+                    }),
+                    _vm._v(" "),
+                    _c("timeago", {
+                      attrs: {
+                        datetime: new Date(_vm.post.published_at),
+                        "auto-update": 60
+                      }
+                    }),
+                    _vm._v(
+                      "\n            - " +
+                        _vm._s(_vm.readingTime) +
+                        "\n          "
+                    )
+                  ],
+                  1
+                )
               ])
             ])
           ]
@@ -18986,6 +19018,17 @@ process.umask = function() { return 0; };
 /***/ })
 /******/ ]);
 });
+
+/***/ }),
+
+/***/ "./node_modules/vue-timeago/dist/vue-timeago.es.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/vue-timeago/dist/vue-timeago.es.js ***!
+  \*********************************************************/
+/*! exports provided: default, createTimeago, install, converter */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\laragon\\www\\packages\\tell\\node_modules\\vue-timeago\\dist\\vue-timeago.es.js'");
 
 /***/ }),
 
@@ -32271,13 +32314,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_vue__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_timeago__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-timeago */ "./node_modules/vue-timeago/dist/vue-timeago.es.js");
 
 /* FontAwesome */
 
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserSecret"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faShoppingCart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCartPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowRight"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEdit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faTrash"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMapMarkerAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStore"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStoreSlash"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHome"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faLock"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloudUploadAlt"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserSecret"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faShoppingCart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCartPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowRight"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEdit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faTrash"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMapMarkerAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStore"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStoreSlash"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHome"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faLock"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloudUploadAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faClock"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCalendar"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 /* SweetAlert */
 
@@ -32302,6 +32346,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_ckeditor_ckeditor5_vue__WEBPACK_
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('multiselect', vue_multiselect__WEBPACK_IMPORTED_MODULE_7___default.a);
+/* VueTimeago */
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_timeago__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  name: 'Timeago',
+  // Component name, `Timeago` by default
+  locale: 'en',
+  // Default locale
+  // We use `date-fns` under the hood
+  // So you can use all locales from it
+  locales: {// 'zh-CN': require('date-fns/locale/zh_cn'),
+  }
+});
 
 /***/ }),
 

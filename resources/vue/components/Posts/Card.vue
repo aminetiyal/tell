@@ -11,12 +11,16 @@
           <div class="flex gap-1 items-baseline mt-2 -mx-1">
             <div class="px-1" v-for="tag in post.tags" :key="tag.id">
               <span
-              class="inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide"
-            >{{tag.name}}</span>
+                class="inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide"
+              >{{tag.name}}</span>
             </div>
           </div>
           <div class="flex item-center mt-2">
-            <p class="text-gray-600 text-sm">Published At: {{post.published_at}}</p>
+            <p class="text-gray-600 text-sm">
+              <font-awesome-icon icon="clock" class="text-gray-400"/>
+              <timeago :datetime="new Date(post.published_at)" :auto-update="60"></timeago>
+              - {{readingTime}}
+            </p>
           </div>
         </div>
       </div>
@@ -36,6 +40,14 @@ export default {
     postBody() {
       let body = this.stripTags(this.post.body);
       return body.length > 100 ? body.substring(0, 100) + "..." : body;
+    },
+    readingTime () {
+      let minutes = 0;
+      const contentString = JSON.stringify(this.post.body);
+      const words = contentString.split(" ").length;
+      const wordsPerMinute = 200;
+      minutes = Math.ceil(words / wordsPerMinute);
+      return minutes + ' min read';
     }
   }
 };
