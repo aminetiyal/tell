@@ -11939,6 +11939,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["post"],
   methods: {
@@ -14019,8 +14023,26 @@ var render = function() {
                 _vm._v(_vm._s(_vm.post.excerpt))
               ]),
               _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "flex gap-1 items-baseline mt-2 -mx-1" },
+                _vm._l(_vm.post.tags, function(tag) {
+                  return _c("div", { key: tag.id, staticClass: "px-1" }, [
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide"
+                      },
+                      [_vm._v(_vm._s(tag.name))]
+                    )
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
               _c("div", { staticClass: "flex item-center mt-2" }, [
-                _c("p", { staticClass: "mt-2 text-gray-600 text-sm" }, [
+                _c("p", { staticClass: "text-gray-600 text-sm" }, [
                   _vm._v("Published At: " + _vm._s(_vm.post.published_at))
                 ])
               ])
