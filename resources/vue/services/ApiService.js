@@ -1,21 +1,23 @@
 export default {
-    get(resource) {
-        return axios.get(resource)
+    prefix: '/api/' + window.Laravel.prefix,
+
+    get(endpoint) {
+        return axios.get(this.prefix + endpoint)
     },
 
-    post(resource, data) {
-        return axios.post(resource, data)
+    post(endpoint, data) {
+        return axios.post(this.prefix + endpoint, data)
     },
 
-    put(resource, data) {
-        return axios.put(resource, data)
+    put(endpoint, data) {
+        return axios.put(this.prefix + endpoint, data)
     },
 
-    patch(resource, data) {
-        return axios.patch(resource, data)
+    patch(endpoint, data) {
+        return axios.patch(this.prefix + endpoint, data)
     },
 
-    delete(resource) {
-        return axios.delete(resource)
+    delete(endpoint) {
+        return axios.delete(this.prefix + endpoint)
     }
 }

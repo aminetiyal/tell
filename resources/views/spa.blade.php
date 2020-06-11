@@ -23,6 +23,8 @@
         window.Laravel.routes = @json([
             'api.tell.images.store' => route("api.tell.images.store")
         ])
+        
+        window.Laravel.prefix = @json(config('tell.prefix'))
 
     </script>
 

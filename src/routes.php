@@ -3,7 +3,7 @@
 Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->middleware(['web'])
     ->as('tell.')
-    ->prefix('tell')
+    ->prefix(config('tell.prefix'))
     ->group(function () {
         Route::get('/', 'SpaController@index')->name('spa.page');
         Route::get('{any}', 'SpaController@index')->where('any', '.*')->name('spa');
@@ -12,7 +12,7 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
 Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->middleware(['web'])
     ->as('api.tell.')
-    ->prefix('api/tell')
+    ->prefix('api/'.config('tell.prefix'))
     ->group(function () {
         Route::apiResource('posts', 'PostController')
             ->parameter('posts', 'post:slug');

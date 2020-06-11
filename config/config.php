@@ -4,6 +4,8 @@
  * You can place your custom package configuration in here.
  */
 return [
+    'prefix' => 'telle',
+
     'users' => [
         'table' => 'users',
         'model' => config('auth.providers.users.model')

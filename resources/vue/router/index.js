@@ -7,23 +7,23 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/tell',
+        path: '/',
         name: 'posts.index',
         component: require('../views/Posts/Index').default
     },
     {
-        path: '/tell/create',
+        path: '/create',
         name: 'posts.create',
         component: require('../views/Posts/Create').default,
         meta: {middleware: [authMiddleware]}
     },
     {
-        path: '/tell/:post',
+        path: '/:post',
         name: 'posts.show',
         component: require('../views/Posts/Show').default
     },
     {
-        path: '/tell/:post/edit',
+        path: '/:post/edit',
         name: 'posts.edit',
         component: require('../views/Posts/Edit').default,
         meta: {middleware: [authMiddleware]}
@@ -31,7 +31,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: 'history', routes
+    mode: 'history',
+    base: window.Laravel.prefix,
+    routes
 })
 
 
