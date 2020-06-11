@@ -107,37 +107,44 @@ export default {
       },
       tags: [],
       editor: {
-        type: BalloonEditor,
+        type: ClassicEditor,
         config: {
           extraPlugins: [CKEditorAdapterPlugin],
           toolbar: {
             items: [
               "heading",
               "|",
+              "undo",
+              "redo",
+              "|",
               "bold",
               "italic",
-              "link",
-              "bulletedList",
-              "numberedList",
+              "underline",
+              "strikethrough",
               "|",
               "alignment",
               "indent",
               "outdent",
               "|",
-              "code",
               "codeBlock",
-              "mediaEmbed",
-              "imageUpload",
+              "code",
               "blockQuote",
+              "link",
+              "imageUpload",
+              "mediaEmbed",
               "insertTable",
               "|",
-              "undo",
-              "redo",
+              "numberedList",
+              "bulletedList",
               "|",
-              "fontColor",
+              "fontFamily",
               "fontBackgroundColor",
+              "fontColor",
+              "fontSize",
               "highlight",
-              "fontSize"
+              "|",
+              "specialCharacters",
+              "|"
             ]
           },
           language: "en",
@@ -149,7 +156,13 @@ export default {
             ]
           },
           table: {
-            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+            contentToolbar: [
+              "tableColumn",
+              "tableRow",
+              "mergeTableCells",
+              "tableCellProperties",
+              "tableProperties"
+            ]
           },
           licenseKey: ""
         }

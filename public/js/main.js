@@ -12417,18 +12417,18 @@ __webpack_require__.r(__webpack_exports__);
       },
       tags: [],
       editor: {
-        type: BalloonEditor,
+        type: ClassicEditor,
         config: {
           extraPlugins: [_services_CkEditorHttp__WEBPACK_IMPORTED_MODULE_3__["default"]],
           toolbar: {
-            items: ["heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "|", "alignment", "indent", "outdent", "|", "code", "codeBlock", "mediaEmbed", "imageUpload", "blockQuote", "insertTable", "|", "undo", "redo", "|", "fontColor", "fontBackgroundColor", "highlight", "fontSize"]
+            items: ["heading", "|", "undo", "redo", "|", "bold", "italic", "underline", "strikethrough", "|", "alignment", "indent", "outdent", "|", "codeBlock", "code", "blockQuote", "link", "imageUpload", "mediaEmbed", "insertTable", "|", "numberedList", "bulletedList", "|", "fontFamily", "fontBackgroundColor", "fontColor", "fontSize", "highlight", "|", "specialCharacters", "|"]
           },
           language: "en",
           image: {
             toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"]
           },
           table: {
-            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells", "tableCellProperties", "tableProperties"]
           },
           licenseKey: ""
         }
@@ -12479,7 +12479,7 @@ __webpack_require__.r(__webpack_exports__);
       var image = event.target.files[0];
       var formData = new FormData();
       formData.append("image", image, image.name);
-      axios.post(Laravel.routes['api.tell.images.store'], formData).then(function (res) {
+      axios.post(Laravel.routes["api.tell.images.store"], formData).then(function (res) {
         console.log(res);
         _this3.post.image = res.data.url;
       })["catch"](function (err) {
@@ -12619,18 +12619,18 @@ __webpack_require__.r(__webpack_exports__);
       },
       tags: [],
       editor: {
-        type: BalloonEditor,
+        type: ClassicEditor,
         config: {
           extraPlugins: [_services_CkEditorHttp__WEBPACK_IMPORTED_MODULE_3__["default"]],
           toolbar: {
-            items: ["heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "|", "alignment", "indent", "outdent", "|", "code", "codeBlock", "mediaEmbed", "imageUpload", "blockQuote", "insertTable", "|", "undo", "redo", "|", "fontColor", "fontBackgroundColor", "highlight", "fontSize"]
+            items: ["heading", "|", "undo", "redo", "|", "bold", "italic", "underline", "strikethrough", "|", "alignment", "indent", "outdent", "|", "codeBlock", "code", "blockQuote", "link", "imageUpload", "mediaEmbed", "insertTable", "|", "numberedList", "bulletedList", "|", "fontFamily", "fontBackgroundColor", "fontColor", "fontSize", "highlight", "|", "specialCharacters", "|"]
           },
           language: "en",
           image: {
             toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"]
           },
           table: {
-            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells", "tableCellProperties", "tableProperties"]
           },
           licenseKey: ""
         }

@@ -51,7 +51,7 @@
       >
         <font-awesome-icon icon="cloud-upload-alt" size="lg" class="h-8 w-8" />
         <span class="mt-2 text-sm leading-normal">Select an image</span>
-        <input type="file" class="hidden" @change="onFileChanged"/>
+        <input type="file" class="hidden" @change="onFileChanged" />
       </label>
     </InputGroup>
 
@@ -100,37 +100,44 @@ export default {
       },
       tags: [],
       editor: {
-        type: BalloonEditor,
+        type: ClassicEditor,
         config: {
           extraPlugins: [CKEditorAdapterPlugin],
           toolbar: {
             items: [
               "heading",
               "|",
+              "undo",
+              "redo",
+              "|",
               "bold",
               "italic",
-              "link",
-              "bulletedList",
-              "numberedList",
+              "underline",
+              "strikethrough",
               "|",
               "alignment",
               "indent",
               "outdent",
               "|",
-              "code",
               "codeBlock",
-              "mediaEmbed",
-              "imageUpload",
+              "code",
               "blockQuote",
+              "link",
+              "imageUpload",
+              "mediaEmbed",
               "insertTable",
               "|",
-              "undo",
-              "redo",
+              "numberedList",
+              "bulletedList",
               "|",
-              "fontColor",
+              "fontFamily",
               "fontBackgroundColor",
+              "fontColor",
+              "fontSize",
               "highlight",
-              "fontSize"
+              "|",
+              "specialCharacters",
+              "|"
             ]
           },
           language: "en",
@@ -142,7 +149,13 @@ export default {
             ]
           },
           table: {
-            contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+            contentToolbar: [
+              "tableColumn",
+              "tableRow",
+              "mergeTableCells",
+              "tableCellProperties",
+              "tableProperties"
+            ]
           },
           licenseKey: ""
         }
@@ -186,12 +199,13 @@ export default {
       const image = event.target.files[0];
       const formData = new FormData();
       formData.append("image", image, image.name);
-      axios.post(Laravel.routes['api.tell.images.store'], formData)
-      .then(res => {
-        console.log(res);
-        this.post.image = res.data.url;
-      })
-      .catch(err => alert(err));
+      axios
+        .post(Laravel.routes["api.tell.images.store"], formData)
+        .then(res => {
+          console.log(res);
+          this.post.image = res.data.url;
+        })
+        .catch(err => alert(err));
     }
   },
   watch: {

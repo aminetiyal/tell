@@ -26,7 +26,7 @@
 
     </script>
 
-    <script src="{{asset('vendor/tell/js/ckeditor5/baloon.js')}}"></script>
+    <script src="{{asset('vendor/tell/js/ckeditor5/classic.js')}}"></script>
     <script src="{{mix('js/main.js','vendor/tell')}}"></script>
 </body>
 
