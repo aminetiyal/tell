@@ -147,6 +147,9 @@ export default {
               "|"
             ]
           },
+          mediaEmbed: {
+            previewsInData: true
+          },
           language: "en",
           image: {
             toolbar: [
@@ -213,7 +216,6 @@ export default {
       formData.append("image", image, image.name);
       axios.post(Laravel.routes['api.tell.images.store'], formData)
       .then(res => {
-        console.log(res);
         this.post.image = res.data.url;
       })
       .catch(err => alert(err));

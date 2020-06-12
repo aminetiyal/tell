@@ -8,7 +8,7 @@
           >Edit</router-link>
         </div>
     </template>
-    <div v-html="post.body"></div>
+    <div v-html="post.body" class="post"></div>
   </Main>
 </template>
 

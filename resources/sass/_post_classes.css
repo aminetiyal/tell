@@ -1,0 +1,35 @@
+.post blockquote {
+    @apply px-4 py-2 border leading-6 font-medium rounded-md uppercase
+}
+
+.post pre {
+    @apply px-4 py-2 mb-1 border rounded-md bg-gray-800
+}
+
+.post code {
+    @apply px-2 py-1 rounded-md bg-gray-800 leading-6 text-sm font-semibold text-blue-200
+}
+
+.post p {
+    @apply leading-6
+}
+
+.post a {
+    @apply underline italic text-blue-800
+}
+
+.post a:hover {
+    @apply underline text-blue-500
+}
+
+.post figure {
+    @apply mx-auto flex flex-col p-1
+}
+
+.post figure > img {
+    
+}
+
+.post figure > figcaption {
+    @apply px-2 py-1 text-center
+}

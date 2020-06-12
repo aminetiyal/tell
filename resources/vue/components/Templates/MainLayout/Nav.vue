@@ -143,11 +143,6 @@ export default {
     };
   },
   methods: {
-    fetch: function() {
-      axios.get("/api/user").then(response => {
-        console.log(response);
-      });
-    },
     logout: function() {
       this.$store.dispatch("logout");
     }
