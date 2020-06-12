@@ -69,7 +69,7 @@
 
     <InputGroup label="Body" :errors="errors.body">
       <div class="form-input p-0">
-        <ckeditor :editor="editor.type" v-model="post.body" :config="editor.config" class="h-64"></ckeditor>
+        <Editor v-model="post.body"></Editor>
       </div>
     </InputGroup>
   </Main>
@@ -77,13 +77,13 @@
 
 <script>
 import Main from "../../components/Templates/MainLayout/Main";
+import Editor from "../../components/Utilities/Editor";
 import postService from "../../services/PostService";
 import tagService from "../../services/TagService";
-import CKEditorAdapterPlugin from "../../services/CkEditorHttp";
 
 export default {
   components: {
-    Main
+    Main, Editor
   },
   data() {
     return {
@@ -98,71 +98,7 @@ export default {
         body: "",
         published: false
       },
-      tags: [],
-      editor: {
-        type: ClassicEditor,
-        config: {
-          extraPlugins: [CKEditorAdapterPlugin],
-          toolbar: {
-            items: [
-              "heading",
-              "|",
-              "undo",
-              "redo",
-              "|",
-              "bold",
-              "italic",
-              "underline",
-              "strikethrough",
-              "|",
-              "alignment",
-              "indent",
-              "outdent",
-              "|",
-              "codeBlock",
-              "code",
-              "blockQuote",
-              "link",
-              "imageUpload",
-              "mediaEmbed",
-              "insertTable",
-              "|",
-              "numberedList",
-              "bulletedList",
-              "|",
-              "fontFamily",
-              "fontBackgroundColor",
-              "fontColor",
-              "fontSize",
-              "highlight",
-              "|",
-              "specialCharacters",
-              "|"
-            ]
-          },
-          language: "en",          
-          mediaEmbed: {
-            previewsInData: true
-          },
-          image: {
-            toolbar: [
-              "imageTextAlternative",
-              "imageStyle:full",
-              "imageStyle:side"
-            ]
-          },
-          table: {
-            contentToolbar: [
-              "tableColumn",
-              "tableRow",
-              "mergeTableCells",
-              "tableCellProperties",
-              "tableProperties"
-            ]
-          },
-          licenseKey: ""
-        }
-      }
+      tags: []
     };
   },
   methods: {
