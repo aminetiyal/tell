@@ -1,10 +1,12 @@
 <?php
 
-/*
- * You can place your custom package configuration in here.
- */
+
 return [
-    'prefix' => 'telle',
+    /**
+     * leave empty to mount the app on the main url: 'prefix' => ''
+     * otherwise put whatever uri you want "blog", "v1/blog"
+     */
+    'prefix' => 'blog',
 
     'users' => [
         'table' => 'users',

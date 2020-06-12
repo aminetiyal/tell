@@ -1,19 +1,14 @@
 <?php
 
-Route::namespace('Aminetiyal\Tell\Http\Controllers')
-    ->middleware(['web'])
-    ->as('tell.')
-    ->prefix(config('tell.prefix'))
-    ->group(function () {
-        Route::get('/', 'SpaController@index')->name('spa.page');
-        Route::get('{any}', 'SpaController@index')->where('any', '.*')->name('spa');
-    });
+use Illuminate\Support\Facades\Route;
 
 Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->middleware(['web'])
     ->as('api.tell.')
-    ->prefix('api/'.config('tell.prefix'))
+    ->prefix('api/' . config('tell.prefix'))
     ->group(function () {
+        Route::get('/', fn()=>'')->name('base');
+
         Route::apiResource('posts', 'PostController')
             ->parameter('posts', 'post:slug');
 
@@ -22,4 +17,14 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
 
         Route::apiResource('tags', 'TagController')
             ->parameter('tags', 'tag:slug');
+    });
+
+
+Route::namespace('Aminetiyal\Tell\Http\Controllers')
+    ->middleware(['web'])
+    ->as('tell.')
+    ->prefix(config('tell.prefix'))
+    ->group(function () {
+        Route::get('/', 'SpaController@index')->name('spa.page');
+        Route::get('{any}', 'SpaController@index')->where('any', '.*')->name('spa');
     });

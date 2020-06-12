@@ -2,6 +2,6 @@ import api from './ApiService'
 
 export default {
     index() {
-        return api.get('/tags');
+        return api.get('tags');
     }
 }

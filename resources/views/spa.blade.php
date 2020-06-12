@@ -21,6 +21,7 @@
         @endauth
 
         window.Laravel.routes = @json([
+            'api.tell.base' => route("api.tell.base"),
             'api.tell.images.store' => route("api.tell.images.store")
         ])
         
