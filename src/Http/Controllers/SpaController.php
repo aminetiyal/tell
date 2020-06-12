@@ -7,6 +7,17 @@ class SpaController
 
     public function index()
     {
-        return view('tell::spa');
+        $javascriptVars = [
+            'authenticated' => auth()->check(),
+            'user' => auth()->user(),
+            
+            'routes' => [
+                'prefix' => config('tell.prefix'),
+                'api.tell.base' => route('api.tell.base'),
+                'api.tell.images.store' => route('api.tell.images.store')
+            ]
+        ];
+
+        return view('tell::spa', compact('javascriptVars'));
     }
 }

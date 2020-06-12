@@ -14,19 +14,7 @@
     <div id="app"></div>
 
     <script>
-        @auth()
-        window.Laravel = @json(['authenticated' => true, 'user' => auth()->user()])
-        @else
-        window.Laravel = @json(['authenticated' => false, 'user' => null])
-        @endauth
-
-        window.Laravel.routes = @json([
-            'api.tell.base' => route("api.tell.base"),
-            'api.tell.images.store' => route("api.tell.images.store")
-        ])
-        
-        window.Laravel.prefix = @json(config('tell.prefix'))
-
+        window.Laravel = @json($javascriptVars)
     </script>
 
     <script src="{{asset('vendor/tell/js/ckeditor5/classic.js')}}"></script>

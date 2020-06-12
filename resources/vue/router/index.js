@@ -32,11 +32,9 @@ const routes = [
 
 const router = new VueRouter({
     mode: 'history',
-    base: window.Laravel.prefix,
+    base: window.Laravel.routes.prefix,
     routes
 })
-
-
 
 router.beforeEach(loadMiddleware);
 
