@@ -47,14 +47,15 @@
       </div>
     </InputGroup>
 
-    <InputGroup label="Image" :errors="errors.image" class="px-1 w-48">
-      <label
-        class="w-48 flex flex-col items-center px-4 py-4 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white"
-      >
-        <font-awesome-icon icon="cloud-upload-alt" size="lg" class="h-8 w-8" />
-        <span class="mt-2 text-sm leading-normal">Select an image</span>
-        <input type="file" class="hidden" @change="onFileChanged" />
-      </label>
+    <InputGroup label="Image" :errors="errors.image" class="w-full md:w-3/4 lg:w-1/2 px-1">
+      <file-pond
+        name="image"
+        ref="pond"
+        label-idle="Select an image"
+        accepted-file-types="image/jpeg, image/png"
+        v-bind:files="post.image"
+        :server="pondServer"
+      />
     </InputGroup>
 
     <InputGroup label="Excerpt" :errors="errors.excerpt" class="px-1">
@@ -152,6 +153,19 @@ export default {
   watch: {
     "post.title"(val) {
       this.post.slug = this.slugify(this.post.title);
+    }
+  },
+  computed: {
+    pondServer() {
+      return {
+        url: window.Laravel.routes["api.tell.images.store"],
+        process: {
+          headers: {
+            "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
+          },
+          withCredentials: true
+        }
+      };
     }
   },
   mounted() {
