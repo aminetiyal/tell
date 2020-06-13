@@ -15,23 +15,25 @@
       </div>
     </template>
 
-    <InputGroup label="Title" :errors="errors.title">
-      <input
-        type="text"
-        v-model="post.title"
-        class="form-input block w-full sm:text-sm sm:leading-5"
-      />
-    </InputGroup>
+    <div class="flex flex-wrap">
+      <InputGroup label="Title" :errors="errors.title" class="w-full sm:w-1/2 px-1">
+        <input
+          type="text"
+          v-model="post.title"
+          class="form-input block w-full sm:text-sm sm:leading-5"
+        />
+      </InputGroup>
 
-    <InputGroup label="Slug" :errors="errors.slug">
-      <input
-        type="text"
-        v-model="post.slug"
-        class="form-input block w-full sm:text-sm sm:leading-5"
-      />
-    </InputGroup>
+      <InputGroup label="Slug" :errors="errors.slug" class="w-full sm:w-1/2 px-1">
+        <input
+          type="text"
+          v-model="post.slug"
+          class="form-input block w-full sm:text-sm sm:leading-5"
+        />
+      </InputGroup>
+    </div>
 
-    <InputGroup label="Tags" :errors="errors.tags">
+    <InputGroup label="Tags" :errors="errors.tags" class="px-1">
       <div class="form-input mt-1 p-0">
         <multiselect
           class="rounded-md shadow-sm"
@@ -45,7 +47,7 @@
       </div>
     </InputGroup>
 
-    <InputGroup label="Image" :errors="errors.image" class="w-48">
+    <InputGroup label="Image" :errors="errors.image" class="px-1 w-48">
       <label
         class="w-48 flex flex-col items-center px-4 py-4 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide uppercase border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white"
       >
@@ -55,19 +57,19 @@
       </label>
     </InputGroup>
 
-    <InputGroup label="Excerpt" :errors="errors.excerpt">
+    <InputGroup label="Excerpt" :errors="errors.excerpt" class="px-1">
       <textarea v-model="post.excerpt" class="form-input block w-full sm:text-sm sm:leading-5"></textarea>
     </InputGroup>
 
-    <InputGroup label="Publish Date" :errors="errors.published_at">
-      <input
-        type="datetime-local"
+    <InputGroup label="Publish Date" :errors="errors.published_at" class="px-1">
+      <datetime
+        type="datetime"
         v-model="post.published_at"
-        class="form-input block w-full sm:text-sm sm:leading-5"
-      />
+        input-class="form-input block w-full sm:text-sm sm:leading-5"
+      ></datetime>
     </InputGroup>
 
-    <InputGroup label="Body" :errors="errors.body">
+    <InputGroup label="Body" :errors="errors.body" class="px-1">
       <div class="form-input p-0">
         <Editor v-model="post.body"></Editor>
       </div>
@@ -83,7 +85,8 @@ import tagService from "../../services/TagService";
 
 export default {
   components: {
-    Main, Editor
+    Main,
+    Editor
   },
   data() {
     return {
@@ -93,7 +96,7 @@ export default {
         slug: "",
         tags: [],
         image: "",
-        published_at: "",
+        published_at: (new Date()).toISOString(),
         excerpt: "",
         body: "",
         published: false

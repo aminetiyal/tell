@@ -1,2 +1,7 @@
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+
+
 @import "./_buttons.css";
 @import "./_post_classes.css";
+@import "./_forms.css";
+

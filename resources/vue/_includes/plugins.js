@@ -44,3 +44,11 @@ Vue.use(VueTimeago, {
     // 'zh-CN': require('date-fns/locale/zh_cn'),
   }
 })
+
+/* vue-datetime */
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+Vue.component('datetime', Datetime);
+
+import { Settings } from 'luxon'
+Settings.defaultLocale = 'en'
