@@ -19,12 +19,27 @@ const Helpers = {
                 .replace(/\-\-+/g, '-');
         },
 
+        /** Read browser cookies by name */
         readCookie(name) {
             var match = document.cookie.match(
                 new RegExp("(^|;\\s*)(" + name + ")=([^;]*)")
             );
             return match ? decodeURIComponent(match[3]) : null;
-        }
+        },
+
+        /**
+         * @param {Array} array: Array to be filtred
+         * @param {callback} callback: filtering condition e.g below
+         *  (item, duplicatedItem) => item.slug == duplicatedItem.slug
+         */
+        uniqueArrayOfObjects(array, callback) {
+            return array.reduce((filtred, item) => {
+              if (!filtred.some(duplicatedItem => callback(item, duplicatedItem))) {
+                filtred.push(item);
+              }
+              return filtred;
+            }, []);
+          }
     }
 };
 

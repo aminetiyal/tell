@@ -15,7 +15,7 @@ class PostController
     public function index(IndexPostRequest $request)
     {
         $posts = TellPost::live()
-            //->where('title', 'like', '%'.$request->query('search').'%')
+            ->where('title', 'like', '%'.$request->query('search').'%')
             ->paginate(5);
 
         return PostResource::collection($posts);
