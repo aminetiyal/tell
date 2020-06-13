@@ -31,8 +31,6 @@ export default {
   methods: {
     getPosts($state = null) {
       tagService.posts(this.tag, this.page, "").then(({ data }) => {
-        console.log("getPosts -> data", data);
-
         if (data.data.length) {
           this.meta = data.meta;
           this.page += 1;
