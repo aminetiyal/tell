@@ -55,6 +55,7 @@
         accepted-file-types="image/jpeg, image/png"
         v-bind:files="post.image"
         :server="pondServer"
+        class="form-input block w-full sm:text-sm sm:leading-5 p-0 pt-4"
       />
     </InputGroup>
 

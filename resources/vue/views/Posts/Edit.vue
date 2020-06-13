@@ -62,6 +62,7 @@
         v-bind:files="post.image"
         :server="pondServer"
         v-on:removefile="deleteImage"
+        class="form-input block w-full sm:text-sm sm:leading-5 p-0 pt-4"
       />
     </InputGroup>
 
@@ -116,7 +117,7 @@ export default {
   },
   methods: {
     deleteImage() {
-      this.uploadMode = true
+      this.uploadMode = true;
       console.log("todo");
       // todo
       console.log(this.$refs.pond);
