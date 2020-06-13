@@ -30,8 +30,8 @@ const routes = [
     },
     {
         path: '/tags/:tag',
-        name: 'tags.show',
-        component: require('../views/Tags/Show').default,
+        name: 'tags.posts',
+        component: require('../views/Tags/Posts').default,
     }
 ]
 
