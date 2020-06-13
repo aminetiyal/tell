@@ -61,6 +61,7 @@
         accepted-file-types="image/jpeg, image/png"
         v-bind:files="post.image"
         :server="pondServer"
+        v-on:removefile="deleteImage"
       />
     </InputGroup>
 
@@ -98,6 +99,7 @@ export default {
   data() {
     return {
       loading: true,
+      uploadMode: null,
       errors: {},
       post: {
         title: "",
@@ -113,6 +115,12 @@ export default {
     };
   },
   methods: {
+    deleteImage() {
+      this.uploadMode = true
+      console.log("todo");
+      // todo
+      console.log(this.$refs.pond);
+    },
     getPost() {
       postService.show(this.$route.params.post).then(({ data }) => {
         this.post = data.data;
@@ -173,12 +181,11 @@ export default {
     pondServer() {
       return {
         url: window.Laravel.routes["api.tell.images.store"],
-        process: {
-          headers: {
-            "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
-          },
-          withCredentials: true
-        }
+        headers: {
+          "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
+        },
+        withCredentials: true,
+        process: this.uploadMode
       };
     }
   },

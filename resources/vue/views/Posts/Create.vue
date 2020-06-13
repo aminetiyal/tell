@@ -97,7 +97,7 @@ export default {
         slug: "",
         tags: [],
         image: "",
-        published_at: (new Date()).toISOString(),
+        published_at: new Date().toISOString(),
         excerpt: "",
         body: "",
         published: false
@@ -159,12 +159,10 @@ export default {
     pondServer() {
       return {
         url: window.Laravel.routes["api.tell.images.store"],
-        process: {
-          headers: {
-            "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
-          },
-          withCredentials: true
-        }
+        headers: {
+          "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
+        },
+        withCredentials: true
       };
     }
   },

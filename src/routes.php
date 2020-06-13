@@ -7,7 +7,7 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->as('api.tell.')
     ->prefix('api/' . config('tell.prefix'))
     ->group(function () {
-        Route::get('/', fn()=>'')->name('base');
+        Route::get('/', fn () => '')->name('base');
 
         Route::apiResource('posts', 'PostController')
             ->parameter('posts', 'post:slug');

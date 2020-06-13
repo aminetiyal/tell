@@ -2,10 +2,7 @@
 
 namespace Aminetiyal\Tell\Http\Controllers;
 
-use Aminetiyal\Tell\Http\Requests\Posts\StorePostRequest;
-use Aminetiyal\Tell\Http\Requests\Posts\UpdatePostRequest;
-use Aminetiyal\Tell\Http\Resources\PostResource;
-use Aminetiyal\Tell\Models\TellPost;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController
