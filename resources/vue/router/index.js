@@ -32,7 +32,6 @@ const routes = [
         path: '/tags/:tag',
         name: 'tags.show',
         component: require('../views/Tags/Show').default,
-        meta: {middleware: [authMiddleware]}
     }
 ]
 
