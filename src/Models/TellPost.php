@@ -2,6 +2,7 @@
 
 namespace Aminetiyal\Tell\Models;
 
+use Aminetiyal\Tell\Scopes\LatestPostsScope;
 use Illuminate\Database\Eloquent\Model;
 
 class TellPost extends Model
@@ -13,6 +14,11 @@ class TellPost extends Model
     protected $fillable = ['title', 'slug', 'image', 'excerpt', 'body', 'published', 'published_at'];
 
     protected $casts = ['published' => 'boolean'];
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new LatestPostsScope);
+    }
 
     public function author()
     {
