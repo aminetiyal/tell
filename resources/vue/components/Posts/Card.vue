@@ -10,9 +10,9 @@
           <p class="mt-2 text-gray-600 text-base">{{post.excerpt}}</p>
           <div class="flex gap-1 items-baseline mt-2 -mx-1">
             <div class="px-1" v-for="tag in post.tags" :key="tag.id">
-              <span
-                class="inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide"
-              >{{tag.name}}</span>
+              <router-link :to="{name:'tags.show', params: {tag: tag.name}}"
+                class="inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide hover:bg-teal-300 hover:text-teal-900"
+              >{{tag.name}}</router-link>
             </div>
           </div>
           <div class="flex item-center mt-2">

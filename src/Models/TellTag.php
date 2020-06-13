@@ -10,6 +10,6 @@ class TellTag extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(TellTag::class, 'tell_post_tag', 'post_id', 'tag_id');
+        return $this->belongsToMany(TellPost::class, 'tell_post_tag', 'tag_id', 'post_id');
     }
 }

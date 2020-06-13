@@ -4,6 +4,7 @@ namespace Aminetiyal\Tell\Http\Controllers;
 
 use Aminetiyal\Tell\Http\Requests\Tags\StoreTagRequest;
 use Aminetiyal\Tell\Http\Requests\Tags\UpdateTagRequest;
+use Aminetiyal\Tell\Http\Resources\PostResource;
 use Aminetiyal\Tell\Http\Resources\TagResource;
 use Aminetiyal\Tell\Models\TellTag;
 
@@ -42,5 +43,10 @@ class TagController
         $tag->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function posts(TellTag $tag)
+    {
+        return PostResource::collection($tag->posts()->paginate(5));
     }
 }
