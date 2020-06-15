@@ -19,7 +19,7 @@
             <p class="text-gray-600 text-sm">
               <font-awesome-icon icon="clock" class="text-gray-400"/>
               <timeago :datetime="new Date(post.published_at)" :auto-update="60"></timeago>
-              - {{readingTime}}
+              - {{readingTime(post.body)}}
             </p>
           </div>
         </div>
@@ -40,14 +40,6 @@ export default {
     postBody() {
       let body = this.stripTags(this.post.body);
       return body.length > 100 ? body.substring(0, 100) + "..." : body;
-    },
-    readingTime () {
-      let minutes = 0;
-      const contentString = JSON.stringify(this.post.body);
-      const words = contentString.split(" ").length;
-      const wordsPerMinute = 200;
-      minutes = Math.ceil(words / wordsPerMinute);
-      return minutes + ' min read';
     }
   }
 };

@@ -34,12 +34,22 @@ const Helpers = {
          */
         uniqueArrayOfObjects(array, callback) {
             return array.reduce((filtred, item) => {
-              if (!filtred.some(duplicatedItem => callback(item, duplicatedItem))) {
-                filtred.push(item);
-              }
-              return filtred;
+                if (!filtred.some(duplicatedItem => callback(item, duplicatedItem))) {
+                    filtred.push(item);
+                }
+                return filtred;
             }, []);
-          }
+        },
+
+
+        readingTime(text) {
+            let minutes = 0;
+            const contentString = JSON.stringify(text);
+            const words = contentString.split(" ").length;
+            const wordsPerMinute = 200;
+            minutes = Math.ceil(words / wordsPerMinute);
+            return minutes + ' min read';
+        }
     }
 };
 
