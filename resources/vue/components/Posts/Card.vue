@@ -2,7 +2,8 @@
   <router-link :to="{name:'posts.show', params: {post: post.slug}}">
     <div class="py-3">
       <div
-        class="flex max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1"
+        class="flex max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1
+        border border-gray-300"
       >
         <div class="w-1/3 bg-cover" :style="{'background-image': 'url(' + post.image + ')'}"></div>
         <div class="w-2/3 p-4">
