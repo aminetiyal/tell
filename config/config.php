@@ -4,8 +4,8 @@
 return [
     'nav' => [
         /**
-         * to disable title or logo just set the value to false
-         */
+     * to disable title or logo just set the value to false
+     */
         'title' => 'TELL',
         'logo' => 'https://tailwindui.com/img/logos/workflow-mark-on-dark.svg'
     ],
@@ -24,5 +24,10 @@ return [
     'storage' => [
         'disk' => 'local',
         'path' => 'public/tell/images'
+    ],
+
+    'infiniteLoading' => [
+        'noMore' => 'No more posts',
+        'noResults' => 'No results'
     ]
 ];

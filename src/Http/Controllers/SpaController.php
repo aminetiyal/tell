@@ -11,6 +11,7 @@ class SpaController
             'authenticated' => auth()->check(),
             'user' => auth()->user(),
             'nav' => config('tell.nav'),
+            'infiniteLoading' =>  config('tell.infiniteLoading'),
             'routes' => [
                 'prefix' => config('tell.prefix'),
                 'api.tell.base' => route('api.tell.base'),

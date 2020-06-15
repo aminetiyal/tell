@@ -3,9 +3,8 @@
     <PostSearch v-model="search"></PostSearch>
     <PostCard v-for="(post, $index) in filtredPosts" :post="post" :key="$index" />
     <infinite-loading :identifier="search" @infinite="getPosts">
-      <!--<div slot="spinner">Loading {{meta.from}} from {{meta.total}}</div>-->
-      <!--<div slot="no-more">No more stores, {{meta.total}} in total</div>-->
-      <!--<div slot="no-results">No results</div>-->
+      <div slot="no-more">{{infiniteLoading.noMore}}</div>
+      <div slot="no-results">{{infiniteLoading.noResult}}</div>
     </infinite-loading>
   </Main>
 </template>
@@ -15,7 +14,7 @@ import Main from "../../components/Templates/MainLayout/Main";
 import PostCard from "../../components/Posts/Card";
 import PostSearch from "../../components/Posts/Search";
 import postService from "../../services/PostService";
-import InfiniteLoading from "vue-infinite-loading";
+import InfiniteLoading from "vue-infinite-loading"; 
 
 export default {
   components: {
@@ -49,6 +48,14 @@ export default {
   computed: {
     filtredPosts() {
       return this.uniqueArrayOfObjects(this.posts, (item, duplicatedItem) => item.slug == duplicatedItem.slug);
+    },
+    infiniteLoading() {
+        const noMore = window.Laravel.infiniteLoading.noMore ?? false;
+        const noResult = window.Laravel.infiniteLoading.noResult ?? false;
+        return {
+            noMore: noMore,
+            noResult: noResult
+        }
     }
   },
   watch: {
