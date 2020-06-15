@@ -47,6 +47,9 @@ class TagController
 
     public function posts(TellTag $tag)
     {
-        return PostResource::collection($tag->posts()->paginate(5));
+        $posts = $tag->posts()->live()
+        ->where('title', 'like', '%'.request()->query('search').'%')
+        ->paginate(5);
+        return PostResource::collection($posts);
     }
 }
