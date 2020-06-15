@@ -25,11 +25,12 @@ import {
     faSearch,
     faCloudUploadAlt,
     faClock,
-    faCalendar
+    faCalendar,
+    faTags
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faUserSecret, faShoppingCart, faCartPlus, faArrowRight, faEdit, faTrash, faEye, faMapMarkerAlt, faStar, faStore,
-    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt, faClock, faCalendar)
+    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt, faClock, faCalendar, faTags)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 

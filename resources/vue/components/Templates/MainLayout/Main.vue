@@ -7,6 +7,9 @@
                     <template v-slot:page_buttons>
                         <slot name="page_buttons"></slot>
                     </template>
+                    <template v-slot:page_description>
+                        <slot name="page_description"></slot>
+                    </template>
                 </PageHeader>
                 <PageContent>
                     <slot></slot>
