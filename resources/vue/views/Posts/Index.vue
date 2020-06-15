@@ -4,7 +4,7 @@
     <PostCard v-for="(post, $index) in filtredPosts" :post="post" :key="$index" />
     <infinite-loading :identifier="search" @infinite="getPosts">
       <div slot="no-more">{{infiniteLoading.noMore}}</div>
-      <div slot="no-results">{{infiniteLoading.noResult}}</div>
+      <div slot="no-results">{{infiniteLoading.noResults}}</div>
     </infinite-loading>
   </Main>
 </template>
@@ -51,10 +51,10 @@ export default {
     },
     infiniteLoading() {
         const noMore = window.Laravel.infiniteLoading.noMore ?? false;
-        const noResult = window.Laravel.infiniteLoading.noResult ?? false;
+        const noResults = window.Laravel.infiniteLoading.noResults ?? false;
         return {
             noMore: noMore,
-            noResult: noResult
+            noResults: noResults
         }
     }
   },
