@@ -1,6 +1,6 @@
 <template>
   <Main title="Posts">
-    <PostSearch v-model="search"></PostSearch>
+    <PostSearch v-model="search" class="-mt-3"></PostSearch>
     <PostCard v-for="(post, $index) in filtredPosts" :post="post" :key="$index" />
     <infinite-loading :identifier="search" @infinite="getPosts">
       <div slot="no-more">{{infiniteLoading.noMore}}</div>
@@ -14,7 +14,7 @@ import Main from "../../components/Templates/MainLayout/Main";
 import PostCard from "../../components/Posts/Card";
 import PostSearch from "../../components/Posts/Search";
 import postService from "../../services/PostService";
-import InfiniteLoading from "vue-infinite-loading"; 
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   components: {
