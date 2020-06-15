@@ -8,15 +8,30 @@
               <img class="h-8 w-8" :src="nav.logo" alt />
             </router-link>
 
-            <router-link :to="{name:'posts.index'}" v-if="nav.title"
+            <router-link
+              :to="{name:'posts.index'}"
+              v-if="nav.title"
               class="ml-2 uppercase text-lg tracking-widest font-bold text-gray-50"
             >{{nav.title}}</router-link>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <router-link :to="{name:'posts.index'}" exact active-class="bg-gray-900 text-white"
-                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-              Home</router-link>
+              <router-link
+                :to="{name:'posts.index'}"
+                exact
+                active-class="bg-gray-900 text-white"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              >Home</router-link>
+
+              <router-link
+                :to="{name:'tags.posts', params: {tag: page.tag}}"
+                exact
+                active-class="bg-gray-900 text-white"
+                v-for="(page, $index) in pages"
+                :key="page.title + '_' + $index"
+                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              >{{page.title}}</router-link>
+
               <router-link
                 :to="{name:'posts.create'}"
                 exact
@@ -91,6 +106,14 @@
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >Home</router-link>
         <router-link
+          :to="{name:'tags.posts', params: {tag: page.tag}}"
+          exact
+          v-for="(page, $index) in pages"
+          :key="page.title + '_' + $index"
+          active-class="text-white bg-gray-900"
+          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+        >{{page.title}}</router-link>
+        <router-link
           v-if="isAuth"
           :to="{name:'posts.create'}"
           exact
@@ -98,9 +121,9 @@
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >New</router-link>
       </div>
-      <div class="pt-4 pb-3 border-t border-gray-700">
+      <div class="pt-4 pb-3 border-t border-gray-700" v-if="isAuth">
         <div class="px-2" v-if="isAuth">
-           <div class="ml-3">
+          <div class="ml-3">
             <div class="text-base font-medium leading-none text-white">{{user.name}}</div>
           </div>
         </div>
@@ -139,12 +162,15 @@ export default {
       return this.$store.getters.getUser || "null";
     },
     nav() {
-        const title = window.Laravel.nav.title ?? false;
-        const logo = window.Laravel.nav.logo ?? false;
-        return {
-            title: title,
-            logo: logo
-        }
+      const title = window.Laravel.nav.title ?? false;
+      const logo = window.Laravel.nav.logo ?? false;
+      return {
+        title: title,
+        logo: logo
+      };
+    },
+    pages() {
+      return window.Laravel.pages ?? false;
     }
   }
 };

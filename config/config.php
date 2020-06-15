@@ -4,8 +4,8 @@
 return [
     'nav' => [
         /**
-     * to disable title or logo just set the value to false
-     */
+         * to disable title or logo just set the value to false
+         */
         'title' => 'TELL',
         'logo' => 'https://tailwindui.com/img/logos/workflow-mark-on-dark.svg'
     ],
@@ -26,6 +26,19 @@ return [
         'path' => 'public/tell/images'
     ],
 
+    /**
+     * to add extra pages related to a tag just follow the example bellow
+     */
+    'pages' => [
+        // [
+        //     'title' => 'Laravel',
+        //     'tag' => 'Laravel'
+        // ]
+    ],
+
+    /**
+     * Costumize the sentences shown while loading posts
+     */
     'infiniteLoading' => [
         'noMore' => 'No more posts',
         'noResults' => 'No results'
