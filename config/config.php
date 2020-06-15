@@ -2,6 +2,14 @@
 
 
 return [
+    'nav' => [
+        /**
+         * to disable title or logo just set the value to false
+         */
+        'title' => 'TELL',
+        'logo' => 'https://tailwindui.com/img/logos/workflow-mark-on-dark.svg'
+    ],
+
     /**
      * leave empty to mount the app on the main url: 'prefix' => ''
      * otherwise put whatever uri you want "blog", "v1/blog"

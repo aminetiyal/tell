@@ -3,21 +3,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <img
-              class="h-8 w-8"
-              src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
-              alt
-            />
+          <div class="flex-shrink-0 flex flex-row items-center">
+            <router-link :to="{name:'posts.index'}" v-if="nav.logo">
+              <img class="h-8 w-8" :src="nav.logo" alt />
+            </router-link>
+
+            <router-link :to="{name:'posts.index'}" v-if="nav.title"
+              class="ml-2 uppercase text-lg tracking-widest font-bold text-gray-50"
+            >{{nav.title}}</router-link>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline">
-              <router-link
-                :to="{name:'posts.index'}"
-                exact
-                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                active-class="bg-gray-900 text-white"
-              >Home</router-link>
+              <router-link :to="{name:'posts.index'}" exact active-class="bg-gray-900 text-white"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+              Home</router-link>
               <router-link
                 :to="{name:'posts.create'}"
                 exact
@@ -93,36 +92,24 @@
         >Home</router-link>
         <router-link
           v-if="isAuth"
-          :to="{name:'posts.create'}" exact
+          :to="{name:'posts.create'}"
+          exact
           active-class="text-white bg-gray-900"
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >New</router-link>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
-        <div class="flex items-center px-5" v-if="isAuth">
-          <div class="flex-shrink-0">
-            <img
-              class="h-10 w-10 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt
-            />
-          </div>
-          <div class="ml-3">
+        <div class="px-2" v-if="isAuth">
+           <div class="ml-3">
             <div class="text-base font-medium leading-none text-white">{{user.name}}</div>
-            <div class="mt-1 text-sm font-medium leading-none text-gray-400">{{user.email}}</div>
           </div>
         </div>
-        <div class="mt-3 px-2">
+        <div class="px-2">
           <a
             v-if="!isAuth"
             href="/login"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Login</a>
-          <a
-            v-if="isAuth"
-            href="http://mts.digital.test/admin"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >Admin</a>
           <a
             v-if="isAuth"
             href="#"
@@ -150,6 +137,14 @@ export default {
   computed: {
     user() {
       return this.$store.getters.getUser || "null";
+    },
+    nav() {
+        const title = window.Laravel.nav.title ?? false;
+        const logo = window.Laravel.nav.logo ?? false;
+        return {
+            title: title,
+            logo: logo
+        }
     }
   }
 };

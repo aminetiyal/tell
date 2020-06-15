@@ -10,7 +10,7 @@ class SpaController
         $javascriptVars = [
             'authenticated' => auth()->check(),
             'user' => auth()->user(),
-            
+            'nav' => config('tell.nav'),
             'routes' => [
                 'prefix' => config('tell.prefix'),
                 'api.tell.base' => route('api.tell.base'),
