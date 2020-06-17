@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import loadMiddleware from "./loadMiddleware";
 import authMiddleware from "./middlewares/auth";
+import guestMiddleware from "./middlewares/guest";
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,12 @@ const routes = [
         path: '/',
         name: 'posts.index',
         component: require('../views/Posts/Index').default
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: require('../views/Auth/Login').default,
+        meta: {middleware: [guestMiddleware]}
     },
     {
         path: '/create',

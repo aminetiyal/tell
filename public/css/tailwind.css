@@ -1096,7 +1096,8 @@ fieldset[disabled] .multiselect{
   border-radius: 0.375rem;
   --bg-opacity: 1;
   background-color: #252f3f;
-  background-color: rgba(37, 47, 63, var(--bg-opacity))
+  background-color: rgba(37, 47, 63, var(--bg-opacity));
+  overflow-x: auto
 }
 
 .post code {

@@ -1,9 +1,18 @@
 import router from "../router";
 
+const baseUrl = window.Laravel.routes['api.tell.base'];
+
+function redirectHome() {
+    if (router.currentRoute.name !== 'posts.index') {
+        router.push({name: 'posts.index'});
+    }
+}
+
 const authModule = ({
     state: {
         user: Laravel.user || null,
-        authenticated: Laravel.authenticated || false
+        authenticated: Laravel.authenticated || false,
+        errors: null
     },
     getters: {
         getUser(state) {
@@ -11,6 +20,9 @@ const authModule = ({
         },
         isAuth(state) {
             return state.authenticated;
+        },
+        getErrors(state) {
+            return state.errors;
         }
     },
     mutations: {
@@ -22,28 +34,34 @@ const authModule = ({
             state.user = null;
             state.authenticated = false;
         },
+        SET_ERRORS(state, errors) {
+            state.errors = errors;
+        },
+        CLEAR_ERRORS(state) {
+            state.errors = null;
+        }
     },
     actions: {
-        login({commit, dispatch}, credentials) {
-            axios.post('/login', credentials)
+        login({commit}, credentials) {
+            axios.post(baseUrl+'/login', credentials)
                 .then(response => {
-                    commit('SET_USER', response.data.data)
-                    router.push({name: 'posts.index'})
+                    commit('SET_USER', response.data);
+                    redirectHome();
                 })
                 .catch(error => {
+                    commit('SET_ERRORS', error.response.data.errors);
                     console.log(error.response.data.errors);
-                })
+                });
         },
         logout({commit}) {
             axios.post('/logout')
                 .then(response => {
                     commit('CLEAR_USER');
-                    router.push({name: 'posts.index'});
+                    redirectHome();
                 })
                 .catch(error => {
                     commit('CLEAR_USER');
-                    router.push({name: 'posts.index'});
-                    console.log(error.response.data.errors);
+                    redirectHome();
                 })
         },
         fetchUser({commit}) {

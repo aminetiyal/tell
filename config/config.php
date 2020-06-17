@@ -2,12 +2,12 @@
 
 
 return [
+    /**
+     * to disable title or logo just set the value to false
+     */
     'nav' => [
-        /**
-         * to disable title or logo just set the value to false
-         */
         'title' => 'TELL',
-        'logo' => 'https://tailwindui.com/img/logos/workflow-mark-on-dark.svg'
+        'logo' => '/vendor/tell/logo.svg'
     ],
 
     /**
@@ -17,6 +17,7 @@ return [
     'prefix' => 'blog',
 
     'users' => [
+        'guard' => 'sanctum',
         'table' => 'users',
         'model' => config('auth.providers.users.model')
     ],
@@ -30,10 +31,7 @@ return [
      * to add extra pages related to a tag just follow the example bellow
      */
     'pages' => [
-        // [
-        //     'title' => 'Laravel',
-        //     'tag' => 'Laravel'
-        // ]
+        // ['title' => 'Laravel','tag' => 'Laravel']
     ],
 
     /**

@@ -1,0 +1,16 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" stroke="null" style="vector-effect: non-scaling-stroke;">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs stroke="null" style="vector-effect: non-scaling-stroke;">
+  <filter stroke="null" style="vector-effect: non-scaling-stroke;" height="200%" width="200%" y="-50%" x="-50%" id="svg_1_blur">
+   <feGaussianBlur stroke="null" style="vector-effect: non-scaling-stroke;" stdDeviation="0" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <g stroke="null">
+  <title stroke="null">background</title>
+  <rect stroke="null" fill="none" id="canvas_background" height="402" width="402" y="-1" x="-1"/>
+ </g>
+ <g stroke="null">
+  <title stroke="null">Layer 1</title>
+  <text stroke="#0f0f00" font-weight="bold" opacity="0.94" filter="url(#svg_1_blur)" transform="rotate(-45 427.5352478027341,420.32156372070307) matrix(4.457490019912812,0,0,5.072295243843138,-860.0369591308344,-1008.5398310485491) " xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="250" id="svg_1" y="368.403932" x="212.499934" stroke-width="0" fill="#5656ff">T</text>
+ </g>
+</svg>

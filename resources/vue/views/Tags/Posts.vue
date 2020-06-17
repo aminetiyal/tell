@@ -1,8 +1,8 @@
 <template>
   <Main :title="'Tag : '+ tag">
     <PostSearch v-model="search" class="-mt-3"></PostSearch>
-    <PostCard v-for="(post, $index) in posts" :post="post" :key="$index" />
-    <infinite-loading :identifier="search" @infinite="getPosts">
+    <PostCard v-for="(post, $index) in filtredPosts" :post="post" :key="$index" />
+    <infinite-loading :identifier="[search, tag]" @infinite="getPosts">
       <div slot="no-more">{{infiniteLoading.noMore}}</div>
       <div slot="no-results">{{infiniteLoading.noResults}}</div>
     </infinite-loading>
@@ -46,6 +46,9 @@ export default {
     }
   },
   computed: {
+    filtredPosts() {
+      return this.uniqueArrayOfObjects(this.posts, (item, duplicatedItem) => item.slug == duplicatedItem.slug);
+    },
     tag() {
       const tag = this.$route.params.tag;
       return tag;

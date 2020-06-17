@@ -136,7 +136,7 @@
           <a
             v-if="isAuth"
             href="#"
-            class="btn mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="btn mt-4 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             @click="logout"
           >Sign out</a>
         </div>

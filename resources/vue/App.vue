@@ -3,3 +3,11 @@
     <router-view />
   </div>
 </template>
+
+<script>
+    export default {
+        mounted() {
+            axios.get('/sanctum/csrf-cookie');
+        }
+    }
+</script>

@@ -1,13 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+
 
 Route::namespace('Aminetiyal\Tell\Http\Controllers')
-    ->middleware(['web'])
+    ->middleware(['web', EnsureFrontendRequestsAreStateful::class])
     ->as('api.tell.')
     ->prefix('api/' . config('tell.prefix'))
     ->group(function () {
         Route::get('/', fn () => '')->name('base');
+
+        Route::post('/login', 'LoginController@login')->name('login');
 
         Route::apiResource('posts', 'PostController')->parameter('posts', 'post:slug');
 
