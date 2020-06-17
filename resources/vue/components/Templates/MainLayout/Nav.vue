@@ -55,7 +55,7 @@
                   @click="navbarOpen = !navbarOpen"
                   class="px-3 py-2 rounded-md text-sm font-medium text-gray-300"
                   v-if="isAuth"
-                >{{user.name}}</div>
+                >{{user.email}}</div>
               </div>
               <div
                 v-if="navbarOpen && isAuth"
@@ -124,7 +124,7 @@
       <div class="pt-4 pb-3 border-t border-gray-700" v-if="isAuth">
         <div class="px-2" v-if="isAuth">
           <div class="ml-3">
-            <div class="text-base font-medium leading-none text-white">{{user.name}}</div>
+            <div class="text-base font-medium leading-none text-white">{{user.email}}</div>
           </div>
         </div>
         <div class="px-2">
