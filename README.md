@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/aminetiyal/tell/5385d67d924007d7a0169d91ee2805f5ca423f71/public/logo.svg?token=ADEDFKN6C77LVLN46QMTZNS65FYPM" width="100"></p>
+<p align="center"><img src="https://github.com/aminetiyal/tell/blob/master/public/logo.svg?raw=true" width="100"></p>
 
 <p align="center">
 <a href="https://packagist.org/packages/aminetiyal/tell"><img src="https://img.shields.io/packagist/v/aminetiyal/tell.svg" alt="Latest Version on Packagist"></a>
