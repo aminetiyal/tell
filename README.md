@@ -1,11 +1,17 @@
-# Very short description of the package
+<p align="center"><img src="https://raw.githubusercontent.com/aminetiyal/tell/5385d67d924007d7a0169d91ee2805f5ca423f71/public/logo.svg?token=ADEDFKN6C77LVLN46QMTZNS65FYPM" width="100"></p>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/aminetiyal/tell.svg?style=flat-square)](https://packagist.org/packages/aminetiyal/tell)
-[![Build Status](https://img.shields.io/travis/aminetiyal/tell/master.svg?style=flat-square)](https://travis-ci.org/aminetiyal/tell)
-[![Quality Score](https://img.shields.io/scrutinizer/g/aminetiyal/tell.svg?style=flat-square)](https://scrutinizer-ci.com/g/aminetiyal/tell)
-[![Total Downloads](https://img.shields.io/packagist/dt/aminetiyal/tell.svg?style=flat-square)](https://packagist.org/packages/aminetiyal/tell)
+<p align="center">
+<a href="https://packagist.org/packages/aminetiyal/tell"><img src="https://img.shields.io/packagist/v/aminetiyal/tell.svg" alt="Latest Version on Packagist"></a>
+<a href="https://travis-ci.org/aminetiyal/tell"><img src="https://travis-ci.org/aminetiyal/tell.svg" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/aminetiyal/tell"><img src="https://img.shields.io/scrutinizer/g/aminetiyal/tell.svg" alt="Quality Score"></a>
+<a href="https://packagist.org/packages/aminetiyal/tell"><img src="https://img.shields.io/packagist/dt/aminetiyal/tell.svg" alt="Total Downloads"></a>
+</p>
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+# About TELL
+
+TELL is a lightweight and full SPA Laravel package built with [Vue](https://github.com/vuejs/vue), [TailwindCSS](https://github.com/tailwindcss/tailwindcss) and [Sanctum](https://github.com/laravel/sanctum) to provide a full BLOG system that can be mounted on your application.
+
+You can publish your posts using [CKEDITOR 5](https://github.com/ckeditor/ckeditor5) with tags supported.
 
 ## Installation
 
