@@ -13142,6 +13142,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43937,49 +43938,53 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6"
-                      },
-                      [
-                        _c("font-awesome-icon", {
-                          staticClass: "text-gray-400 mr-1",
-                          attrs: { icon: "tags", "full-width": "" }
-                        }),
-                        _vm._v(" "),
-                        _c(
+                    _vm.post.tags.length !== 0
+                      ? _c(
                           "div",
-                          { staticClass: "flex flex-wrap items-center -ml-1" },
-                          _vm._l(_vm.post.tags, function(tag) {
-                            return _c(
+                          {
+                            staticClass:
+                              "mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6"
+                          },
+                          [
+                            _c("font-awesome-icon", {
+                              staticClass: "text-gray-400 mr-1",
+                              attrs: { icon: "tags", "full-width": "" }
+                            }),
+                            _vm._v(" "),
+                            _c(
                               "div",
-                              { key: tag.id, staticClass: "px-1" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass:
-                                      "inline-block bg-gray-200 text-gray-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide hover:bg-gray-300 hover:text-gray-900",
-                                    attrs: {
-                                      to: {
-                                        name: "tags.posts",
-                                        params: { tag: tag.name }
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(tag.name))]
+                              {
+                                staticClass: "flex flex-wrap items-center -ml-1"
+                              },
+                              _vm._l(_vm.post.tags, function(tag) {
+                                return _c(
+                                  "div",
+                                  { key: tag.id, staticClass: "px-1" },
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "inline-block bg-gray-200 text-gray-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide hover:bg-gray-300 hover:text-gray-900",
+                                        attrs: {
+                                          to: {
+                                            name: "tags.posts",
+                                            params: { tag: tag.name }
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(tag.name))]
+                                    )
+                                  ],
+                                  1
                                 )
-                              ],
-                              1
+                              }),
+                              0
                             )
-                          }),
-                          0
+                          ],
+                          1
                         )
-                      ],
-                      1
-                    )
+                      : _vm._e()
                   ]
                 },
                 proxy: true
