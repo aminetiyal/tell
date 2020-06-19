@@ -21,19 +21,15 @@ class TellServiceProvider extends ServiceProvider
         $this->registerRoutes();
 
         if ($this->app->runningInConsole()) {
+            // Publishing config.
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('tell.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/tell'),
-            ], 'views');*/
+            ], 'tell:config');
 
             // Publishing assets.
             $this->publishes([
                 __DIR__.'/../public' => public_path('vendor/tell'),
-            ], 'tell-assets');
+            ], 'tell:assets');
 
             // Publishing the translation files.
             /*$this->publishes([

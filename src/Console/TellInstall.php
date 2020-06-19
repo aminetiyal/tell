@@ -27,12 +27,32 @@ class TellInstall extends Command
      */
     public function handle()
     {
-        // $this->comment('Publishing TELL Assets...');
-        // $this->callSilent('vendor:publish', ['--tag' => 'tell-assets']);
 
-        // $this->comment('Publishing TELL Configuration...');
-        // $this->callSilent('vendor:publish', ['--tag' => 'tell-config']);
+        $this->callSilent('vendor:publish', ['--tag' => 'tell:assets']);
+        $this->info('✔ TELL Assets Published');
 
+        $this->callSilent('vendor:publish', ['--tag' => 'tell:config']);
+        $this->info('✔ TELL Configuration Published');
+
+        $this->callSilent('vendor:publish', ['--provider' => 'Laravel\Sanctum\SanctumServiceProvider']);
+        $this->info('✔ laravel/sanctum Configuration Published');
+
+        $this->callSilent('migrate');
+        $this->info('✔ Migrations Executed');
+
+        $this->info('✔ TELL was installed successfully.');
+
+        $this->line('');
+
+        // add test data
+        //$this->addTestData();
+
+        $this->comment('↓ Please follow the instructions on the link bellow to install laravel/sanctum properly ↓');
+        $this->comment('https://laravel.com/docs/sanctum#installation');
+    }
+
+    public function addTestData()
+    {
         \App\User::create([
             'name' => 'Amine TIYAL',
             'email' => 'aminetiyal@gmail.com',
@@ -45,7 +65,5 @@ class TellInstall extends Command
             ['name' => 'VueJs', 'slug' => 'vuejs'],
             ['name' => 'TailwindCSS', 'slug' => 'tailwindcSS']
         ]);
-
-        $this->info('TELL was installed successfully.');
     }
 }
