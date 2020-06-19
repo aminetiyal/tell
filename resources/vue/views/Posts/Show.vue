@@ -14,7 +14,8 @@
         <font-awesome-icon icon="clock" full-width class="text-gray-400 mr-2" />
         {{published_at}}
       </div>
-      <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6">
+      <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mr-6" v-if="post.tags.length !== 0">
+
         <font-awesome-icon icon="tags" full-width class="text-gray-400 mr-1" />
         <div class="flex flex-wrap items-center -ml-1">
           <div class="px-1" v-for="tag in post.tags" :key="tag.id">
