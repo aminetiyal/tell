@@ -18,7 +18,6 @@ return [
 
     'users' => [
         'guard' => 'sanctum',
-        'table' => 'users',
         'model' => config('auth.providers.users.model')
     ],
 

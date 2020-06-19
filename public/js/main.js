@@ -42659,7 +42659,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(_vm.user.name))]
+                      [_vm._v(_vm._s(_vm.user.email))]
                     )
                   : _vm._e()
               ]),
@@ -42824,7 +42824,7 @@ var render = function() {
                           staticClass:
                             "text-base font-medium leading-none text-white"
                         },
-                        [_vm._v(_vm._s(_vm.user.name))]
+                        [_vm._v(_vm._s(_vm.user.email))]
                       )
                     ])
                   ])
