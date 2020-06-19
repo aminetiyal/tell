@@ -8,10 +8,8 @@ class CreateTellPostsTable extends Migration
 {
     public function up()
     {
-        $authorClass = config('tell.users.model');
-        $authorModel = new $authorClass();
 
-        Schema::create('tell_posts', function (Blueprint $table) use ($authorModel) {
+        Schema::create('tell_posts', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
             $table->string('title');
@@ -20,7 +18,7 @@ class CreateTellPostsTable extends Migration
             $table->boolean('published')->default(false);
             $table->dateTime('published_at')->nullable();
             $table->string('image');
-            $table->foreignId('author_id')->constrained($authorModel->getTable());
+            $table->foreignId('author_id');
             $table->timestamps();
         });
     }
