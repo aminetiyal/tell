@@ -11968,9 +11968,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["post"],
   methods: {
@@ -42236,87 +42233,77 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "router-link",
-    { attrs: { to: { name: "posts.show", params: { post: _vm.post.slug } } } },
+    {
+      staticClass:
+        "flex my-3 max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-300",
+      attrs: { to: { name: "posts.show", params: { post: _vm.post.slug } } }
+    },
     [
-      _c("div", { staticClass: "py-3" }, [
+      _c("div", {
+        staticClass: "w-1/3 bg-cover",
+        style: { "background-image": "url(" + _vm.post.image + ")" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-2/3 p-4" }, [
+        _c("h1", { staticClass: "text-gray-900 font-bold text-2xl" }, [
+          _vm._v(_vm._s(_vm.post.title))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "mt-2 text-gray-600 text-base" }, [
+          _vm._v(_vm._s(_vm.post.excerpt))
+        ]),
+        _vm._v(" "),
         _c(
           "div",
-          {
-            staticClass:
-              "flex max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1\n      border border-gray-300"
-          },
-          [
-            _c("div", {
-              staticClass: "w-1/3 bg-cover",
-              style: { "background-image": "url(" + _vm.post.image + ")" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-2/3 p-4" }, [
-              _c("h1", { staticClass: "text-gray-900 font-bold text-2xl" }, [
-                _vm._v(_vm._s(_vm.post.title))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mt-2 text-gray-600 text-base" }, [
-                _vm._v(_vm._s(_vm.post.excerpt))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex flex-wrap gap-1 items-baseline -mx-1" },
-                _vm._l(_vm.post.tags, function(tag) {
-                  return _c(
-                    "div",
-                    { key: tag.id, staticClass: "flex px-1" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass:
-                            "inline-block bg-teal-200 text-teal-800 text-xs mt-2 px-2 rounded-full uppercase font-semibold tracking-wide hover:bg-teal-300 hover:text-teal-900",
-                          attrs: {
-                            to: {
-                              name: "tags.posts",
-                              params: { tag: tag.name }
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(tag.name))]
-                      )
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "flex item-center mt-2" }, [
+          { staticClass: "flex flex-wrap gap-1 items-baseline -mx-1" },
+          _vm._l(_vm.post.tags, function(tag) {
+            return _c(
+              "div",
+              { key: tag.id, staticClass: "flex px-1" },
+              [
                 _c(
-                  "p",
-                  { staticClass: "text-gray-600 text-sm" },
-                  [
-                    _c("font-awesome-icon", {
-                      staticClass: "text-gray-400",
-                      attrs: { icon: "clock" }
-                    }),
-                    _vm._v(" "),
-                    _c("timeago", {
-                      attrs: {
-                        datetime: new Date(_vm.post.published_at),
-                        "auto-update": 60
-                      }
-                    }),
-                    _vm._v(
-                      "\n            - " +
-                        _vm._s(_vm.readingTime(_vm.post.body)) +
-                        "\n          "
-                    )
-                  ],
-                  1
+                  "router-link",
+                  {
+                    staticClass:
+                      "inline-block bg-teal-200 text-teal-800 text-xs mt-2 px-2 rounded-full uppercase font-semibold tracking-wide hover:bg-teal-300 hover:text-teal-900",
+                    attrs: {
+                      to: { name: "tags.posts", params: { tag: tag.name } }
+                    }
+                  },
+                  [_vm._v(_vm._s(tag.name))]
                 )
-              ])
-            ])
-          ]
-        )
+              ],
+              1
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex item-center mt-2" }, [
+          _c(
+            "p",
+            { staticClass: "text-gray-600 text-sm" },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "text-gray-400",
+                attrs: { icon: "clock" }
+              }),
+              _vm._v(" "),
+              _c("timeago", {
+                attrs: {
+                  datetime: new Date(_vm.post.published_at),
+                  "auto-update": 60
+                }
+              }),
+              _vm._v(
+                "\n        - " +
+                  _vm._s(_vm.readingTime(_vm.post.body)) +
+                  "\n      "
+              )
+            ],
+            1
+          )
+        ])
       ])
     ]
   )
