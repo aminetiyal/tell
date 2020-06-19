@@ -20,26 +20,32 @@ You can install the package via composer:
 ```bash
 composer require aminetiyal/tell
 ```
+Then you may setup the package using artisan:
+
+```bash
+php artisan tell:install
+```
+To keep the assets up-to-date and avoid issues in future updates, we highly recommend adding the command to the post-autoload-dump scripts in your composer.json file:
+
+```bash
+{
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=tell:assets --ansi"
+        ]
+    }
+}
+```
+
+## Note
+
+Please note that this package use [laravel/sanctum](https://laravel.com/docs/sanctum#how-it-works) to authenticate via cookie, in order to avoid authentication problem please follow this [instructions](https://laravel.com/docs/sanctum#installation).
 
 ## Usage
 
-``` php
-// Usage description here
-```
-
-### Testing
-
-``` bash
-composer test
-```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Just navigate to /blog/login or to your costum /[prefix](https://github.com/aminetiyal/tell/blob/17b84ff27b5176ca17bca8053aa77f327a27b12a/config/config.php#L17)/login if changed, and authenticate using your default credentials.
 
 ## Credits
 
