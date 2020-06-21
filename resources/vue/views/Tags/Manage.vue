@@ -1,88 +1,60 @@
 <template>
-  <Main title="Create Post">
-    <template v-slot:page_buttons>
-      <div class="inline-flex rounded-md shadow">
-        <button
-          @click="draft"
-          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-blue-100 hover:bg-blue-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-        >Draft</button>
+  <Main title="Tags Management">
+    <div class="my-10">
+      <div class="bg-white rounded-md border border-gray-200">
+        <div class="relative rounded-t-md shadow-sm border-b border-gray-200">
+          <input
+            name="search"
+            type="text"
+            v-model="search"
+            class="form-input border-none block w-full pl-3 pr-9 text-sm leading-5 font-medium text-gray-900"
+            placeholder="Search"
+          />
+          <div class="absolute inset-y-0 right-0 px-3 flex items-center pointer-events-none">
+            <font-awesome-icon icon="search" class="text-gray-500 sm:text-sm sm:leading-5">$</font-awesome-icon>
+          </div>
+        </div>
+        <div class="max-h-80 overflow-y-scroll" v-if="tags.length !== 0">
+          <div
+            v-for="(tag,index) in tags"
+            :key="tag.id"
+            :class="[ index !== tags.length -1 ? 'border-b border-gray-200' : '']"
+            class="px-3 py-1 flex justify-between"
+          >
+            <div>
+              <router-link
+                :to="{name:'tags.posts', params:{tag:tag.slug}}"
+                class="text-sm leading-5 font-medium text-gray-900 hover:underline"
+              >{{tag.name}}</router-link>
+              <div
+                class="text-xs leading-5 text-gray-500 hover:text-gray-700"
+              >Posts count: {{tag.posts_count}}</div>
+            </div>
+            <div class="text-sm flex items-center justify-between -mr-1">
+              <a href="#" class="mx-1 text-indigo-600 hover:text-indigo-900">Edit</a>
+              <a href="#" class="mx-1 text-red-600 hover:text-red-900">Delete</a>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div class="px-3 py-1 text-center">
+            <p class="text-sm leading-5 font-medium text-gray-900">No tags found</p>
+            <div
+              class="text-xs leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline"
+            >
+              Do you want to add
+              <b>{{search}}</b> to your tags ?
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ml-3 inline-flex rounded-md shadow">
-        <button
-          @click="publish"
-          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
-        >Publish</button>
-      </div>
-    </template>
-
-    <div class="flex flex-wrap">
-      <InputGroup label="Title" :errors="errors.title" class="w-full sm:w-1/2 px-1">
-        <input
-          type="text"
-          v-model="post.title"
-          class="form-input block w-full sm:text-sm sm:leading-5"
-        />
-      </InputGroup>
-
-      <InputGroup label="Slug" :errors="errors.slug" class="w-full sm:w-1/2 px-1">
-        <input
-          type="text"
-          v-model="post.slug"
-          class="form-input block w-full sm:text-sm sm:leading-5"
-        />
-      </InputGroup>
     </div>
-
-    <InputGroup label="Tags" :errors="errors.tags" class="px-1">
-      <div class="form-input mt-1 p-0">
-        <multiselect
-          class="rounded-md shadow-sm"
-          v-model="post.tags"
-          :options="tags"
-          :multiple="true"
-          label="name"
-          track-by="name"
-          :preselect-first="true"
-        ></multiselect>
-      </div>
-    </InputGroup>
-
-    <InputGroup label="Image" :errors="errors.image" class="w-full md:w-3/4 lg:w-1/2 px-1">
-      <file-pond
-        name="image"
-        ref="pond"
-        label-idle="Select an image"
-        accepted-file-types="image/jpeg, image/png"
-        v-bind:files="post.image"
-        :server="pondServer"
-        class="form-input block w-full sm:text-sm sm:leading-5 p-0 pt-4"
-      />
-    </InputGroup>
-
-    <InputGroup label="Excerpt" :errors="errors.excerpt" class="px-1">
-      <textarea v-model="post.excerpt" class="form-input block w-full sm:text-sm sm:leading-5"></textarea>
-    </InputGroup>
-
-    <InputGroup label="Publish Date" :errors="errors.published_at" class="px-1">
-      <datetime
-        type="datetime"
-        v-model="post.published_at"
-        input-class="form-input block w-full sm:text-sm sm:leading-5"
-      ></datetime>
-    </InputGroup>
-
-    <InputGroup label="Body" :errors="errors.body" class="px-1">
-      <div class="form-input p-0">
-        <Editor v-model="post.body"></Editor>
-      </div>
-    </InputGroup>
   </Main>
 </template>
 
 <script>
 import Main from "../../components/Templates/MainLayout/Main";
 import Editor from "../../components/Utilities/Editor";
-import postService from "../../services/PostService";
 import tagService from "../../services/TagService";
 
 export default {
@@ -93,80 +65,57 @@ export default {
   data() {
     return {
       errors: {},
-      post: {
-        title: "",
-        slug: "",
-        tags: [],
-        image: "",
-        published_at: new Date().toISOString(),
-        excerpt: "",
-        body: "",
-        published: false
+      tag: {
+        name: "",
+        slug: ""
       },
-      tags: []
+      tags: [],
+      search: "sdfqs"
     };
   },
   methods: {
-    save() {
-      postService
-        .store(this.post)
-        .then(({ data }) => {
-          this.$router.push({
-            name: "posts.show",
-            params: { post: data.data.slug }
-          });
-        })
-        .catch(({ response }) => {
-          console.log(response.data.errors);
-          this.errors = response.data.errors;
-        });
-    },
-    publish() {
-      this.post.published = true;
-      this.save();
-    },
-    draft() {
-      this.post.published = false;
-      this.save();
-    },
+    // save() {
+    //   tagService
+    //     .store(this.tag)
+    //     .then(({ data }) => {
+    //       this.$router.push({
+    //         name: "posts.show",
+    //         params: { post: data.data.slug }
+    //       });
+    //     })
+    //     .catch(({ response }) => {
+    //       console.log(response.data.errors);
+    //       this.errors = response.data.errors;
+    //     });
+    // },
+    // publish() {
+    //   this.post.published = true;
+    //   this.save();
+    // },
+    // draft() {
+    //   this.post.published = false;
+    //   this.save();
+    // },
     getTags() {
       tagService
-        .index()
+        .index(this.search)
         .then(({ data }) => {
           this.tags = data.data;
         })
         .catch(({ response }) => {
           console.log(response.data.errors);
         });
-    },
-    onFileChanged(event) {
-      const image = event.target.files[0];
-      const formData = new FormData();
-      formData.append("image", image, image.name);
-      axios
-        .post(Laravel.routes["api.tell.images.store"], formData)
-        .then(res => {
-          this.post.image = res.data.url;
-        })
-        .catch(err => alert(err));
     }
   },
   watch: {
-    "post.title"(val) {
-      this.post.slug = this.slugify(this.post.title);
+    search() {
+      this.getTags();
     }
+    //"post.title"(val) {
+    //  this.post.slug = this.slugify(this.post.title);
+    //}
   },
-  computed: {
-    pondServer() {
-      return {
-        url: window.Laravel.routes["api.tell.images.store"],
-        headers: {
-          "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
-        },
-        withCredentials: true
-      };
-    }
-  },
+  computed: {},
   mounted() {
     this.getTags();
   }

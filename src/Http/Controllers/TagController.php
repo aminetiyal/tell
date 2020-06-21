@@ -7,13 +7,16 @@ use Aminetiyal\Tell\Http\Requests\Tags\UpdateTagRequest;
 use Aminetiyal\Tell\Http\Resources\PostResource;
 use Aminetiyal\Tell\Http\Resources\TagResource;
 use Aminetiyal\Tell\Models\TellTag;
+use Illuminate\Http\Request;
 
 class TagController
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $tags = TellTag::all();
+        $tags = TellTag::withCount('posts')
+            ->where('name', 'like', '%' . $request->query('search') . '%')
+            ->get();
 
         return TagResource::collection($tags);
     }
@@ -48,8 +51,8 @@ class TagController
     public function posts(TellTag $tag)
     {
         $posts = $tag->posts()->live()
-        ->where('title', 'like', '%'.request()->query('search').'%')
-        ->paginate(5);
+            ->where('title', 'like', '%' . request()->query('search') . '%')
+            ->paginate(5);
         return PostResource::collection($posts);
     }
 }
