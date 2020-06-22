@@ -26,6 +26,7 @@ class TagController
     public function store(StoreTagRequest $request)
     {
         $tag = new TellTag($request->validated());
+        
         $tag->save();
 
         return new TagResource($tag);

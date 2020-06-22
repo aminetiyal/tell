@@ -72,6 +72,7 @@
         <div v-if="notFound">
           <div class="px-3 py-1 text-center">
             <div
+              @click="addTag"
               class="text-xs sm:text-sm leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline"
             >
               Do you want to add
@@ -150,6 +151,18 @@ export default {
       Object.assign(tag, this.oldTag);
       this.selectedTag = this.oldTag = null;
     },
+    addTag() {
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to add " + this.search + " to your tags list ?",
+        icon: "info",
+        buttons: true
+      }).then(confirmed => {
+        if (confirmed) {
+          this.saveTag();
+        }
+      });
+    },
     getTags() {
       tagService
         .index(this.search)
@@ -159,37 +172,28 @@ export default {
         .catch(({ response }) => {
           console.log(response.data.errors);
         });
+    },
+    save() {
+      tagService
+        .store(this.search)
+        .then(({ data }) => {
+          this.$swal(
+            "Added!",
+            "The tag has been stored successfully!",
+            "success"
+          );
+          this.search = "";
+          this.getTags();
+        })
+        .catch(({ response }) => {
+          console.log(response.data.errors);
+        });
     }
-    // save() {
-    //   tagService
-    //     .store(this.tag)
-    //     .then(({ data }) => {
-    //       this.$router.push({
-    //         name: "posts.show",
-    //         params: { post: data.data.slug }
-    //       });
-    //     })
-    //     .catch(({ response }) => {
-    //       console.log(response.data.errors);
-    //       this.errors = response.data.errors;
-    //     });
-    // },
-    // publish() {
-    //   this.post.published = true;
-    //   this.save();
-    // },
-    // draft() {
-    //   this.post.published = false;
-    //   this.save();
-    // },
   },
   watch: {
     search() {
       this.getTags();
     }
-    //"post.title"(val) {
-    //  this.post.slug = this.slugify(this.post.title);
-    //}
   },
   computed: {
     notFound() {

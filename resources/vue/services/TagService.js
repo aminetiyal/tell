@@ -5,7 +5,7 @@ export default {
         return api.get('tags' + '?search=' + search);
     },
     store(data) {
-        return api.post('tags', data);
+        return api.post('tags', {name: data});
     },
     update(tag , data) {
         return api.put('tags/' + tag , data);

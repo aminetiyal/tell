@@ -9,8 +9,7 @@ class StoreTagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:tell_tags,name',
-            'slug' => 'required|string|max:255|unique:tell_tags,slug'
+            'name' => 'required|string|max:255|unique:tell_tags,name'
         ];
     }
 }

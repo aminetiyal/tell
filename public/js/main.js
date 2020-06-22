@@ -12792,7 +12792,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(Laravel.routes["api.tell.images.store"], formData).then(function (res) {
         swal({
           title: "Success",
-          text: "Uploaded succefully !",
+          text: "Uploaded successfully !",
           icon: "success"
         });
         _this3.post.image = res.data.url;
@@ -12821,7 +12821,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data === 1) {
               swal({
                 title: "Success",
-                text: "Deleted succefully !",
+                text: "Deleted successfully !",
                 icon: "success"
               });
             }
@@ -13053,7 +13053,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(Laravel.routes["api.tell.images.store"], formData).then(function (res) {
         swal({
           title: "Success",
-          text: "Uploaded succefully !",
+          text: "Uploaded successfully !",
           icon: "success"
         });
         _this4.post.image = res.data.url;
@@ -13082,7 +13082,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data === 1) {
               swal({
                 title: "Success",
-                text: "Deleted succefully !",
+                text: "Deleted successfully !",
                 icon: "success"
               });
             }
@@ -13407,6 +13407,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -13475,54 +13476,59 @@ __webpack_require__.r(__webpack_exports__);
       Object.assign(tag, this.oldTag);
       this.selectedTag = this.oldTag = null;
     },
-    getTags: function getTags() {
+    addTag: function addTag() {
       var _this3 = this;
+
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to add " + this.search + " to your tags list ?",
+        icon: "info",
+        buttons: true
+      }).then(function (confirmed) {
+        if (confirmed) {
+          _this3.saveTag();
+        }
+      });
+    },
+    getTags: function getTags() {
+      var _this4 = this;
 
       _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].index(this.search).then(function (_ref5) {
         var data = _ref5.data;
-        _this3.tags = data.data;
+        _this4.tags = data.data;
       })["catch"](function (_ref6) {
         var response = _ref6.response;
         console.log(response.data.errors);
       });
-    } // save() {
-    //   tagService
-    //     .store(this.tag)
-    //     .then(({ data }) => {
-    //       this.$router.push({
-    //         name: "posts.show",
-    //         params: { post: data.data.slug }
-    //       });
-    //     })
-    //     .catch(({ response }) => {
-    //       console.log(response.data.errors);
-    //       this.errors = response.data.errors;
-    //     });
-    // },
-    // publish() {
-    //   this.post.published = true;
-    //   this.save();
-    // },
-    // draft() {
-    //   this.post.published = false;
-    //   this.save();
-    // },
+    },
+    save: function save() {
+      var _this5 = this;
 
+      _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].store(this.search).then(function (_ref7) {
+        var data = _ref7.data;
+
+        _this5.$swal("Added!", "The tag has been stored successfully!", "success");
+
+        _this5.search = "";
+
+        _this5.getTags();
+      })["catch"](function (_ref8) {
+        var response = _ref8.response;
+        console.log(response.data.errors);
+      });
+    }
   },
   watch: {
     search: function search() {
       this.getTags();
-    } //"post.title"(val) {
-    //  this.post.slug = this.slugify(this.post.title);
-    //}
-
+    }
   },
   computed: {
     notFound: function notFound() {
-      var _this4 = this;
+      var _this6 = this;
 
       return this.search !== "" && !this.tags.some(function (tag) {
-        return tag.name === _this4.search;
+        return tag.name === _this6.search;
       });
     }
   },
@@ -44724,7 +44730,8 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "text-xs sm:text-sm leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline"
+                      "text-xs sm:text-sm leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline",
+                    on: { click: _vm.addTag }
                   },
                   [
                     _vm._v("\n            Do you want to add\n            "),
@@ -63645,7 +63652,9 @@ __webpack_require__.r(__webpack_exports__);
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].get('tags' + '?search=' + search);
   },
   store: function store(data) {
-    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].post('tags', data);
+    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].post('tags', {
+      name: data
+    });
   },
   update: function update(tag, data) {
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].put('tags/' + tag, data);

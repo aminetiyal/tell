@@ -191,7 +191,7 @@ export default {
         .then(res => {
           swal({
             title: "Success",
-            text: "Uploaded succefully !",
+            text: "Uploaded successfully !",
             icon: "success"
           });
           this.post.image = res.data.url;
@@ -221,7 +221,7 @@ export default {
               if (response.data === 1) {
                 swal({
                   title: "Success",
-                  text: "Deleted succefully !",
+                  text: "Deleted successfully !",
                   icon: "success"
                 });
               }
