@@ -13403,6 +13403,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -13431,7 +13435,7 @@ __webpack_require__.r(__webpack_exports__);
       _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].update(tag.slug, this.selectedTag).then(function (_ref) {
         var data = _ref.data;
 
-        _this.$swal("Updated!", "The tag updated succefully!", "success");
+        _this.$swal("Updated!", "The tag updated successfully!", "success");
 
         _this.selectedTag = null;
 
@@ -13441,18 +13445,44 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data.errors);
       });
     },
+    deleteTag: function deleteTag(tag) {
+      var _this2 = this;
+
+      swal({
+        title: "Are you sure?",
+        text: "All posts related to this tag will be detached !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"](tag.slug).then(function (_ref3) {
+            var data = _ref3.data;
+
+            _this2.$swal("Deleted!", "The tag deleted successfully!", "success");
+
+            _this2.selectedTag = null;
+
+            _this2.getTags();
+          })["catch"](function (_ref4) {
+            var response = _ref4.response;
+            console.log(response.data.errors);
+          });
+        }
+      });
+    },
     cancel: function cancel(tag) {
       Object.assign(tag, this.oldTag);
       this.selectedTag = this.oldTag = null;
     },
     getTags: function getTags() {
-      var _this2 = this;
+      var _this3 = this;
 
-      _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].index(this.search).then(function (_ref3) {
-        var data = _ref3.data;
-        _this2.tags = data.data;
-      })["catch"](function (_ref4) {
-        var response = _ref4.response;
+      _services_TagService__WEBPACK_IMPORTED_MODULE_2__["default"].index(this.search).then(function (_ref5) {
+        var data = _ref5.data;
+        _this3.tags = data.data;
+      })["catch"](function (_ref6) {
+        var response = _ref6.response;
         console.log(response.data.errors);
       });
     } // save() {
@@ -13489,10 +13519,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     notFound: function notFound() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.search !== "" && !this.tags.some(function (tag) {
-        return tag.name === _this3.search;
+        return tag.name === _this4.search;
       });
     }
   },
@@ -44555,7 +44585,7 @@ var render = function() {
                           }
                         ],
                         staticClass:
-                          "form-input text-sm sm:text-lg leading-5 font-medium text-gray-900 w-full sm:w-3/4 md:w-1/2",
+                          "form-input text-sm my-1 sm:text-lg leading-5 font-medium text-gray-900 w-full sm:w-3/4 md:w-1/2",
                         domProps: { value: _vm.selectedTag.name },
                         on: {
                           input: function($event) {
@@ -44668,7 +44698,12 @@ var render = function() {
                             {
                               staticClass:
                                 "mx-1 text-red-600 hover:text-red-900",
-                              attrs: { href: "#" }
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteTag(tag)
+                                }
+                              }
                             },
                             [_vm._v("Delete")]
                           )
@@ -63614,6 +63649,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   update: function update(tag, data) {
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].put('tags/' + tag, data);
+  },
+  "delete": function _delete(tag) {
+    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('tags/' + tag);
   },
   posts: function posts(tag) {
     var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;

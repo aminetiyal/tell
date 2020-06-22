@@ -15,6 +15,7 @@ class TagController
     public function index(Request $request)
     {
         $tags = TellTag::withCount('posts')
+            ->orderBy('posts_count', 'desc')
             ->where('name', 'like', '%' . $request->query('search') . '%')
             ->get();
 
@@ -43,6 +44,8 @@ class TagController
 
     public function destroy(TellTag $tag)
     {
+        $tag->posts()->detach();
+        
         $tag->delete();
 
         return response()->json(null, 204);

@@ -10,6 +10,9 @@ export default {
     update(tag , data) {
         return api.put('tags/' + tag , data);
     },
+    delete(tag) {
+        return api.delete('tags/' + tag);
+    },
     posts(tag, page = 1, search = "") {
         return api.get('tags/' + tag + '/posts' + '?page=' + page + '&search=' + search);
     }

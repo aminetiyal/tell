@@ -27,10 +27,10 @@
             class="px-3 py-1 flex justify-between border-b border-gray-200"
           >
             <template v-if="selectedTag !== null && tag.id === selectedTag.id">
-                <input
-                  class="form-input text-sm sm:text-lg leading-5 font-medium text-gray-900 w-full sm:w-3/4 md:w-1/2"
-                  v-model="selectedTag.name"
-                />
+              <input
+                class="form-input text-sm my-1 sm:text-lg leading-5 font-medium text-gray-900 w-full sm:w-3/4 md:w-1/2"
+                v-model="selectedTag.name"
+              />
               <div class="text-sm sm:text-base flex items-center justify-between -mr-1">
                 <a
                   href="#"
@@ -60,7 +60,11 @@
                   class="mx-1 text-indigo-600 hover:text-indigo-900"
                   @click="edit(tag)"
                 >Edit</a>
-                <a href="#" class="mx-1 text-red-600 hover:text-red-900">Delete</a>
+                <a
+                  href="#"
+                  @click="deleteTag(tag)"
+                  class="mx-1 text-red-600 hover:text-red-900"
+                >Delete</a>
               </div>
             </template>
           </div>
@@ -108,13 +112,39 @@ export default {
       tagService
         .update(tag.slug, this.selectedTag)
         .then(({ data }) => {
-          this.$swal("Updated!", "The tag updated succefully!", "success");
+          this.$swal("Updated!", "The tag updated successfully!", "success");
           this.selectedTag = null;
           this.getTags();
         })
         .catch(({ response }) => {
           console.log(response.data.errors);
         });
+    },
+    deleteTag(tag) {
+      swal({
+        title: "Are you sure?",
+        text: "All posts related to this tag will be detached !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          tagService
+            .delete(tag.slug)
+            .then(({ data }) => {
+              this.$swal(
+                "Deleted!",
+                "The tag deleted successfully!",
+                "success"
+              );
+              this.selectedTag = null;
+              this.getTags();
+            })
+            .catch(({ response }) => {
+              console.log(response.data.errors);
+            });
+        }
+      });
     },
     cancel(tag) {
       Object.assign(tag, this.oldTag);
