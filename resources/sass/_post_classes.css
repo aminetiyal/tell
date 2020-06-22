@@ -3,7 +3,7 @@
 }
 
 .post pre {
-    @apply px-4 py-2 mb-1 border rounded-md bg-gray-800 overflow-x-auto 
+    @apply px-4 py-2 mb-1 border rounded-md bg-gray-800 overflow-x-auto
 }
 
 .post code {
@@ -23,13 +23,13 @@
 }
 
 .post figure {
-    @apply mx-auto mt-1 flex flex-col shadow-xl
+    @apply mx-auto mt-1 flex flex-col
 }
 
 .post figure > img {
-    @apply rounded-md
+    @apply rounded-md shadow-xl
 }
 
 .post figure > figcaption {
-    @apply px-2 py-1 text-center
+    @apply px-2 py-1 text-center text-sm text-gray-600 font-bold
 }

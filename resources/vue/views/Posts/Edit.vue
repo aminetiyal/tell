@@ -54,7 +54,7 @@
     </InputGroup>
 
     <InputGroup label="Image" :errors="errors.image" class="w-full md:w-3/4 lg:w-1/2 px-1">
-      <file-pond
+      <!-- <file-pond
         name="image"
         ref="pond"
         label-idle="Select an image"
@@ -63,8 +63,30 @@
         :server="pondServer"
         v-on:removefile="deleteImage"
         class="form-input block w-full sm:text-sm sm:leading-5 p-0 pt-4"
-        style="background-color: #f1f0ef;"
+      />-->
+      <img
+        class="rounded-md shadow-md mb-2 hover:bg-blue-700"
+        :src="post.image"
+        :alt="post.title"
+        v-if="post.image !== ''"
       />
+
+      <div class="flex w-full items-center justify-center bg-grey-lighter">
+        <label
+          v-if="post.image === ''"
+          class="h-10 w-full flex flex-col items-center bg-white text-blue rounded-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white"
+        >
+          <span class="text-base leading-normal my-auto">Select a file</span>
+          <input type="file" class="hidden" @change="onFileChanged" />
+        </label>
+        <button
+          v-else
+          @click="removeImage"
+          class="h-10 w-full flex flex-col items-center bg-white text-blue rounded-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-400 hover:text-white focus:outline-none"
+        >
+          <span class="text-base leading-normal my-auto">Remove</span>
+        </button>
+      </div>
     </InputGroup>
 
     <InputGroup label="Excerpt" :errors="errors.excerpt" class="px-1">
@@ -92,6 +114,7 @@ import Main from "../../components/Templates/MainLayout/Main";
 import Editor from "../../components/Utilities/Editor";
 import postService from "../../services/PostService";
 import tagService from "../../services/TagService";
+import imageService from "../../services/ImageService";
 
 export default {
   components: {
@@ -117,12 +140,6 @@ export default {
     };
   },
   methods: {
-    deleteImage() {
-      this.uploadMode = true;
-      console.log("todo");
-      // todo
-      console.log(this.$refs.pond);
-    },
     getPost() {
       postService.show(this.$route.params.post).then(({ data }) => {
         this.post = data.data;
@@ -163,6 +180,58 @@ export default {
         .catch(({ response }) => {
           console.log(response.data.errors);
         });
+    },
+
+    onFileChanged(event) {
+      const image = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", image, image.name);
+      axios
+        .post(Laravel.routes["api.tell.images.store"], formData)
+        .then(res => {
+          swal({
+            title: "Success",
+            text: "Uploaded succefully !",
+            icon: "success"
+          });
+          this.post.image = res.data.url;
+        })
+        .catch(err => {
+          swal({
+            title: "Error",
+            text: "Error while uploading !",
+            icon: "error"
+          });
+        });
+    },
+
+    removeImage() {
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to delete this image !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          const imgName = this.parseImageName(this.post.image);
+          imageService
+            .delete(imgName)
+            .then(response => {
+              if (response.data === 1) {
+                swal({
+                  title: "Success",
+                  text: "Deleted succefully !",
+                  icon: "success"
+                });
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          this.post.image = "";
+        }
+      });
     }
   },
   watch: {
@@ -178,17 +247,6 @@ export default {
       set(val) {
         this.post.published_at = val;
       }
-    },
-
-    pondServer() {
-      return {
-        url: window.Laravel.routes["api.tell.images.store"],
-        headers: {
-          "X-XSRF-TOKEN": this.readCookie("XSRF-TOKEN")
-        },
-        withCredentials: true,
-        process: this.uploadMode
-      };
     }
   },
   mounted() {

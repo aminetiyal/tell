@@ -16,6 +16,7 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
         Route::apiResource('posts', 'PostController')->parameter('posts', 'post:slug');
 
         Route::post('/images', 'ImageController@store')->name('images.store');
+        Route::delete('/images/{image}', 'ImageController@destroy')->name('images.destroy');
 
         Route::apiResource('tags', 'TagController')->parameter('tags', 'tag:slug');
         Route::get('/tags/{tag:name}/posts', 'TagController@posts')->name('tags.posts.index');

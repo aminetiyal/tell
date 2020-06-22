@@ -8,9 +8,11 @@ class UpdateTagRequest extends FormRequest
 {
     public function rules()
     {
+        $tag = request()->route('tag');
+
         return [
-            'name' => 'required|string|max:255|unique:tell_tags,name',
-            'slug' => 'required|string|max:255|unique:tell_tags,slug'
+            'name' => 'required|string|max:255|unique:tell_tags,name,' . $tag->id,
+            'slug' => 'required|string|max:255|unique:tell_tags,slug,' . $tag->id
         ];
     }
 }

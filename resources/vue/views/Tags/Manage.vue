@@ -7,40 +7,68 @@
             name="search"
             type="text"
             v-model="search"
-            class="form-input border-none block w-full pl-3 pr-9 text-sm leading-5 font-medium text-gray-900"
+            class="form-input rounded-none rounded-t-md border-none block w-full pl-3 pr-9 text-sm sm:text-base leading-5 font-medium text-gray-900"
             placeholder="Search"
           />
           <div class="absolute inset-y-0 right-0 px-3 flex items-center pointer-events-none">
             <font-awesome-icon icon="search" class="text-gray-500 sm:text-sm sm:leading-5">$</font-awesome-icon>
           </div>
         </div>
-        <div class="max-h-80 overflow-y-scroll" v-if="tags.length !== 0">
+        <div v-if="tags.length === 0">
+          <div class="px-3 py-3 text-center border-b border-gray-200">
+            <p class="text-sm sm:text-base leading-5 font-medium text-gray-900">No tags found</p>
+          </div>
+        </div>
+        <div class="max-h-80 overflow-y-scroll">
+          <!-- :class="[ index !== tags.length -1 ? 'border-b border-gray-200' : '']"  -->
           <div
             v-for="(tag,index) in tags"
             :key="tag.id"
-            :class="[ index !== tags.length -1 ? 'border-b border-gray-200' : '']"
-            class="px-3 py-1 flex justify-between"
+            class="px-3 py-1 flex justify-between border-b border-gray-200"
           >
-            <div>
-              <router-link
-                :to="{name:'tags.posts', params:{tag:tag.slug}}"
-                class="text-sm leading-5 font-medium text-gray-900 hover:underline"
-              >{{tag.name}}</router-link>
-              <div
-                class="text-xs leading-5 text-gray-500 hover:text-gray-700"
-              >Posts count: {{tag.posts_count}}</div>
-            </div>
-            <div class="text-sm flex items-center justify-between -mr-1">
-              <a href="#" class="mx-1 text-indigo-600 hover:text-indigo-900">Edit</a>
-              <a href="#" class="mx-1 text-red-600 hover:text-red-900">Delete</a>
-            </div>
+            <template v-if="selectedTag !== null && tag.id === selectedTag.id">
+                <input
+                  class="form-input text-sm sm:text-lg leading-5 font-medium text-gray-900 w-full sm:w-3/4 md:w-1/2"
+                  v-model="selectedTag.name"
+                />
+              <div class="text-sm sm:text-base flex items-center justify-between -mr-1">
+                <a
+                  href="#"
+                  class="mx-1 text-green-500 hover:text-green-700"
+                  @click="update(tag)"
+                >Update</a>
+                <a
+                  href="#"
+                  class="mx-1 text-yellow-500 hover:text-yellow-700"
+                  @click="cancel(tag)"
+                >Cancel</a>
+              </div>
+            </template>
+            <template v-else>
+              <div>
+                <router-link
+                  :to="{name:'tags.posts', params:{tag:tag.slug}}"
+                  class="text-sm sm:text-base leading-5 font-medium text-gray-900 hover:underline"
+                >{{tag.name}}</router-link>
+                <div
+                  class="text-xs sm:text-sm leading-5 text-gray-500 hover:text-gray-700"
+                >Posts count: {{tag.posts_count}}</div>
+              </div>
+              <div class="text-sm sm:text-base flex items-center justify-between -mr-1">
+                <a
+                  href="#"
+                  class="mx-1 text-indigo-600 hover:text-indigo-900"
+                  @click="edit(tag)"
+                >Edit</a>
+                <a href="#" class="mx-1 text-red-600 hover:text-red-900">Delete</a>
+              </div>
+            </template>
           </div>
         </div>
-        <div v-else>
+        <div v-if="notFound">
           <div class="px-3 py-1 text-center">
-            <p class="text-sm leading-5 font-medium text-gray-900">No tags found</p>
             <div
-              class="text-xs leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline"
+              class="text-xs sm:text-sm leading-5 text-gray-500 cursor-pointer hover:text-gray-700 hover:underline"
             >
               Do you want to add
               <b>{{search}}</b> to your tags ?
@@ -65,15 +93,43 @@ export default {
   data() {
     return {
       errors: {},
-      tag: {
-        name: "",
-        slug: ""
-      },
+      oldTag: null,
+      selectedTag: null,
       tags: [],
-      search: "sdfqs"
+      search: ""
     };
   },
   methods: {
+    edit(tag) {
+      this.oldTag = Object.assign({}, tag);
+      this.selectedTag = tag;
+    },
+    update(tag) {
+      tagService
+        .update(tag.slug, this.selectedTag)
+        .then(({ data }) => {
+          this.$swal("Updated!", "The tag updated succefully!", "success");
+          this.selectedTag = null;
+          this.getTags();
+        })
+        .catch(({ response }) => {
+          console.log(response.data.errors);
+        });
+    },
+    cancel(tag) {
+      Object.assign(tag, this.oldTag);
+      this.selectedTag = this.oldTag = null;
+    },
+    getTags() {
+      tagService
+        .index(this.search)
+        .then(({ data }) => {
+          this.tags = data.data;
+        })
+        .catch(({ response }) => {
+          console.log(response.data.errors);
+        });
+    }
     // save() {
     //   tagService
     //     .store(this.tag)
@@ -96,16 +152,6 @@ export default {
     //   this.post.published = false;
     //   this.save();
     // },
-    getTags() {
-      tagService
-        .index(this.search)
-        .then(({ data }) => {
-          this.tags = data.data;
-        })
-        .catch(({ response }) => {
-          console.log(response.data.errors);
-        });
-    }
   },
   watch: {
     search() {
@@ -115,7 +161,13 @@ export default {
     //  this.post.slug = this.slugify(this.post.title);
     //}
   },
-  computed: {},
+  computed: {
+    notFound() {
+      return (
+        this.search !== "" && !this.tags.some(tag => tag.name === this.search)
+      );
+    }
+  },
   mounted() {
     this.getTags();
   }

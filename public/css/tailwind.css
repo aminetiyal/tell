@@ -1141,12 +1141,12 @@ fieldset[disabled] .multiselect{
   margin-right: auto;
   margin-top: 0.25rem;
   display: flex;
-  flex-direction: column;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)
+  flex-direction: column
 }
 
 .post figure > img {
-  border-radius: 0.375rem
+  border-radius: 0.375rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)
 }
 
 .post figure > figcaption {
@@ -1154,8 +1154,14 @@ fieldset[disabled] .multiselect{
   padding-right: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  text-align: center
+  text-align: center;
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: #4b5563;
+  color: rgba(75, 85, 99, var(--text-opacity));
+  font-weight: 700
 }
+
 
 .container {
   width: 100%;

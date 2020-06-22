@@ -20,4 +20,9 @@ class ImageController
             'url' => Storage::disk(config('tell.storage.disk'))->url($path),
         ]);
     }
+
+    public function destroy($image)
+    {
+        return Storage::delete('/public/tell/images/' . $image);
+    }
 }

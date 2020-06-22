@@ -4,6 +4,12 @@ export default {
     index(search = "") {
         return api.get('tags' + '?search=' + search);
     },
+    store(data) {
+        return api.post('tags', data);
+    },
+    update(tag , data) {
+        return api.put('tags/' + tag , data);
+    },
     posts(tag, page = 1, search = "") {
         return api.get('tags/' + tag + '/posts' + '?page=' + page + '&search=' + search);
     }

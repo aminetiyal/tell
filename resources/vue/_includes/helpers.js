@@ -49,6 +49,11 @@ const Helpers = {
             const wordsPerMinute = 200;
             minutes = Math.ceil(words / wordsPerMinute);
             return minutes + ' min read';
+        },
+
+        parseImageName(path) {
+            const fileNames = path.split("/");
+            return fileNames[fileNames.length - 1];
         }
     }
 };
