@@ -13057,6 +13057,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: "success"
         });
         _this4.post.image = res.data.url;
+        _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].update(_this4.$route.params.post, _this4.post);
       })["catch"](function (err) {
         swal({
           title: "Error",

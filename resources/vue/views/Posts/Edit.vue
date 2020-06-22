@@ -195,6 +195,7 @@ export default {
             icon: "success"
           });
           this.post.image = res.data.url;
+          postService.update(this.$route.params.post, this.post);
         })
         .catch(err => {
           swal({
