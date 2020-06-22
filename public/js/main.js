@@ -12283,6 +12283,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -42910,6 +42925,22 @@ var render = function() {
                         staticClass:
                           "ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
                         attrs: {
+                          to: { name: "tags.manage" },
+                          exact: "",
+                          "active-class": "bg-gray-900 text-white"
+                        }
+                      },
+                      [_vm._v("Tags")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isAuth
+                  ? _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
+                        attrs: {
                           to: { name: "posts.create" },
                           exact: "",
                           "active-class": "bg-gray-900 text-white"
@@ -43086,6 +43117,22 @@ var render = function() {
                 [_vm._v(_vm._s(page.title))]
               )
             }),
+            _vm._v(" "),
+            _vm.isAuth
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
+                    attrs: {
+                      to: { name: "tags.manage" },
+                      exact: "",
+                      "active-class": "text-white bg-gray-900"
+                    }
+                  },
+                  [_vm._v("Tags")]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _vm.isAuth
               ? _c(

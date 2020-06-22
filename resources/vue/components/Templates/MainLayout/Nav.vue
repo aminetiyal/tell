@@ -33,6 +33,14 @@
               >{{page.title}}</router-link>
 
               <router-link
+                :to="{name:'tags.manage'}"
+                exact
+                v-if="isAuth"
+                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                active-class="bg-gray-900 text-white"
+              >Tags</router-link>
+
+              <router-link
                 :to="{name:'posts.create'}"
                 exact
                 v-if="isAuth"
@@ -113,6 +121,13 @@
           active-class="text-white bg-gray-900"
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >{{page.title}}</router-link>
+        <router-link
+          v-if="isAuth"
+          :to="{name:'tags.manage'}"
+          exact
+          active-class="text-white bg-gray-900"
+          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+        >Tags</router-link>
         <router-link
           v-if="isAuth"
           :to="{name:'posts.create'}"
