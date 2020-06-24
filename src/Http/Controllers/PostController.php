@@ -11,10 +11,18 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PostController
 {
-
     public function index(IndexPostRequest $request)
     {
         $posts = TellPost::live()
+            ->where('title', 'like', '%'.$request->query('search').'%')
+            ->paginate(5);
+
+        return PostResource::collection($posts);
+    }
+
+    public function drafts(IndexPostRequest $request)
+    {
+        $posts = TellPost::draft()
             ->where('title', 'like', '%'.$request->query('search').'%')
             ->paginate(5);
 
@@ -49,7 +57,7 @@ class PostController
     public function destroy(TellPost $post)
     {
         $post->tags()->detach();
-        
+
         $post->delete();
 
         return response()->json(null, 204);

@@ -7,6 +7,12 @@ export const postRoutes = [
         component: require('../../views/Posts/Index').default
     },
     {
+        path: '/drafts',
+        name: 'posts.drafts',
+        component: require('../../views/Posts/Drafts').default,
+        meta: {middleware: [authMiddleware]}
+    },
+    {
         path: '/create',
         name: 'posts.create',
         component: require('../../views/Posts/Create').default,

@@ -13,6 +13,7 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
 
         Route::post('/login', 'LoginController@login')->name('login');
 
+        Route::get('/posts/drafts', 'PostController@drafts')->name('posts.drafts');
         Route::apiResource('posts', 'PostController')->parameter('posts', 'post:slug');
 
         Route::post('/images', 'ImageController@store')->name('images.store');

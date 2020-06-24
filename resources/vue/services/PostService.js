@@ -4,6 +4,9 @@ export default {
     index(page = 1, search = "") {
         return api.get('posts' + '?page=' + page + '&search=' + search);
     },
+    drafts(page = 1, search = "") {
+        return api.get('posts/drafts' + '?page=' + page + '&search=' + search);
+    },
     show(post) {
         return api.get('posts/' + post);
     },

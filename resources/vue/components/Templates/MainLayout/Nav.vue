@@ -70,6 +70,12 @@
                 class="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
               >
                 <div class="py-1 rounded-md bg-white shadow-xs">
+                  <router-link
+                    :to="{name: 'posts.drafts'}"
+                    exact
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Drafts</router-link>
+
                   <a
                     href="#"
                     @click="logout"
@@ -148,6 +154,12 @@
             href="/login"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Login</a>
+          <router-link
+            :to="{name:'posts.drafts'}"
+            exact
+            v-if="isAuth"
+            class="block mt-2 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          >Drafts</router-link>
           <a
             v-if="isAuth"
             href="#"
