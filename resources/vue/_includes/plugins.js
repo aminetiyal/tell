@@ -28,9 +28,12 @@ import {
     faCalendar,
     faTags
 } from '@fortawesome/free-solid-svg-icons'
+import {
+    faTwitter, faFacebook, faLinkedin
+} from '@fortawesome/free-brands-svg-icons'
 
 library.add(faUserSecret, faShoppingCart, faCartPlus, faArrowRight, faEdit, faTrash, faEye, faMapMarkerAlt, faStar, faStore,
-    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt, faClock, faCalendar, faTags)
+    faStoreSlash, faHome, faLock, faSearch, faCloudUploadAlt, faClock, faCalendar, faTags, faTwitter, faFacebook, faLinkedin)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
@@ -91,3 +94,11 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 const FilePond = vueFilePond(FilePondPluginFileValidateType, FilePondPluginImagePreview);
 Vue.component('file-pond', FilePond);
 
+/* VueSocialSharing */
+import VueSocialSharing from 'vue-social-sharing'
+Vue.use(VueSocialSharing);
+
+
+/* VueMeta */
+import VueMeta from 'vue-meta'
+Vue.use(VueMeta, {refreshOnceOnNavigation: true})
