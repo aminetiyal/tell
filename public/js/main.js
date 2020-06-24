@@ -16689,6 +16689,16 @@ __webpack_require__.r(__webpack_exports__);
       _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].show(this.$route.params.post).then(function (response) {
         _this.post = response.data.data;
         _this.loading = false;
+      })["catch"](function (error) {
+        _this.$router.push({
+          name: "posts.index"
+        });
+
+        swal({
+          title: "Post Not Found !",
+          icon: "error",
+          timer: 3000
+        });
       });
     }
   },

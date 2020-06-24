@@ -55,10 +55,20 @@ export default {
   },
   methods: {
     getPost() {
-      postService.show(this.$route.params.post).then(response => {
-        this.post = response.data.data;
-        this.loading = false;
-      });
+      postService
+        .show(this.$route.params.post)
+        .then(response => {
+          this.post = response.data.data;
+          this.loading = false;
+        })
+        .catch(error => {
+          this.$router.push({ name: "posts.index" });
+          swal({
+            title: "Post Not Found !",
+            icon: "error",
+            timer: 3000
+          });
+        });
     }
   },
   computed: {
