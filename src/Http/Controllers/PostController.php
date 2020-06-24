@@ -42,7 +42,7 @@ class PostController
 
     public function show(TellPost $post)
     {
-        return new PostResource($post);
+        return $post->published ? new PostResource($post) : abort(404);
     }
 
     public function update(UpdatePostRequest $request, TellPost $post)
