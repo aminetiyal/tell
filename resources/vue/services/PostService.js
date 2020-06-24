@@ -12,5 +12,8 @@ export default {
     },
     update(post, data) {
         return api.put('posts/' + post, data);
+    },
+    destroy(post) {
+        return api.delete('posts/' + post);
     }
 }

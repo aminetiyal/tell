@@ -1,5 +1,5 @@
 <template>
-  <Main :title="'Edit: '+ $route.params.post" v-if="!loading">
+  <Main :title="'Edit: '+ post.title" v-if="!loading">
     <template v-slot:page_buttons>
       <div class="inline-flex rounded-md shadow">
         <router-link
@@ -9,8 +9,14 @@
       </div>
       <div class="ml-3 inline-flex rounded-md shadow">
         <button
+          @click="destroy"
+          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+        >Delete</button>
+      </div>
+      <div class="ml-3 inline-flex rounded-md shadow">
+        <button
           @click="draft"
-          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-blue-100 hover:bg-blue-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-gray-900 bg-yellow-300 hover:bg-yellow-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
         >Draft</button>
       </div>
       <div class="ml-3 inline-flex rounded-md shadow">
@@ -159,6 +165,34 @@ export default {
         .catch(({ response }) => {
           this.errors = response.data.errors;
         });
+    },
+
+    destroy() {
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to delete this post !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          postService
+            .destroy(this.$route.params.post)
+            .then(({ data }) => {
+              this.$router.push({
+                name: "posts.index"
+              });
+              swal(
+                "Deleted!",
+                "The post has been deleted successfully!",
+                "success"
+              );
+            })
+            .catch(({ response }) => {
+              this.errors = response.data.errors;
+            });
+        }
+      });
     },
 
     publish() {

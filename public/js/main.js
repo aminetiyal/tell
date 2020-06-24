@@ -16217,6 +16217,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16272,6 +16278,32 @@ __webpack_require__.r(__webpack_exports__);
         _this2.errors = response.data.errors;
       });
     },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to delete this post !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].destroy(_this3.$route.params.post).then(function (_ref4) {
+            var data = _ref4.data;
+
+            _this3.$router.push({
+              name: "posts.index"
+            });
+
+            swal("Deleted!", "The post has been deleted successfully!", "success");
+          })["catch"](function (_ref5) {
+            var response = _ref5.response;
+            _this3.errors = response.data.errors;
+          });
+        }
+      });
+    },
     publish: function publish() {
       this.post.published = true;
       this.update();
@@ -16281,18 +16313,18 @@ __webpack_require__.r(__webpack_exports__);
       this.update();
     },
     getTags: function getTags() {
-      var _this3 = this;
+      var _this4 = this;
 
-      _services_TagService__WEBPACK_IMPORTED_MODULE_3__["default"].index().then(function (_ref4) {
-        var data = _ref4.data;
-        _this3.tags = data.data;
-      })["catch"](function (_ref5) {
-        var response = _ref5.response;
+      _services_TagService__WEBPACK_IMPORTED_MODULE_3__["default"].index().then(function (_ref6) {
+        var data = _ref6.data;
+        _this4.tags = data.data;
+      })["catch"](function (_ref7) {
+        var response = _ref7.response;
         console.log(response.data.errors);
       });
     },
     onFileChanged: function onFileChanged(event) {
-      var _this4 = this;
+      var _this5 = this;
 
       var image = event.target.files[0];
       var formData = new FormData();
@@ -16303,8 +16335,8 @@ __webpack_require__.r(__webpack_exports__);
           text: "Uploaded successfully !",
           icon: "success"
         });
-        _this4.post.image = res.data.url;
-        _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].update(_this4.$route.params.post, _this4.post);
+        _this5.post.image = res.data.url;
+        _services_PostService__WEBPACK_IMPORTED_MODULE_2__["default"].update(_this5.$route.params.post, _this5.post);
       })["catch"](function (err) {
         swal({
           title: "Error",
@@ -16314,7 +16346,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeImage: function removeImage() {
-      var _this5 = this;
+      var _this6 = this;
 
       swal({
         title: "Are you sure?",
@@ -16324,7 +16356,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          var imgName = _this5.parseImageName(_this5.post.image);
+          var imgName = _this6.parseImageName(_this6.post.image);
 
           _services_ImageService__WEBPACK_IMPORTED_MODULE_4__["default"]["delete"](imgName).then(function (response) {
             if (response.data === 1) {
@@ -16337,7 +16369,7 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             console.log(error);
           });
-          _this5.post.image = "";
+          _this6.post.image = "";
         }
       });
     }
@@ -47274,7 +47306,7 @@ var render = function() {
     ? _c(
         "Main",
         {
-          attrs: { title: "Edit: " + _vm.$route.params.post },
+          attrs: { title: "Edit: " + _vm.post.title },
           scopedSlots: _vm._u(
             [
               {
@@ -47311,7 +47343,23 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-blue-100 hover:bg-blue-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
+                              "inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
+                            on: { click: _vm.destroy }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "ml-3 inline-flex rounded-md shadow" },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "inline-flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-gray-900 bg-yellow-300 hover:bg-yellow-200 hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
                             on: { click: _vm.draft }
                           },
                           [_vm._v("Draft")]
@@ -47341,7 +47389,7 @@ var render = function() {
             ],
             null,
             false,
-            860963753
+            749188066
           )
         },
         [
@@ -69239,6 +69287,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   update: function update(post, data) {
     return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"].put('posts/' + post, data);
+  },
+  destroy: function destroy(post) {
+    return _ApiService__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('posts/' + post);
   }
 });
 

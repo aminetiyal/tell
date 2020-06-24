@@ -48,6 +48,8 @@ class PostController
 
     public function destroy(TellPost $post)
     {
+        $post->tags()->detach();
+        
         $post->delete();
 
         return response()->json(null, 204);
