@@ -15467,12 +15467,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -46359,39 +46353,7 @@ var render = function() {
                     },
                     [_vm._v(_vm._s(page.title))]
                   )
-                }),
-                _vm._v(" "),
-                _vm.isAuth
-                  ? _c(
-                      "router-link",
-                      {
-                        staticClass:
-                          "ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
-                        attrs: {
-                          to: { name: "tags.manage" },
-                          exact: "",
-                          "active-class": "bg-gray-900 text-white"
-                        }
-                      },
-                      [_vm._v("Tags")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.isAuth
-                  ? _c(
-                      "router-link",
-                      {
-                        staticClass:
-                          "ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
-                        attrs: {
-                          to: { name: "posts.create" },
-                          exact: "",
-                          "active-class": "bg-gray-900 text-white"
-                        }
-                      },
-                      [_vm._v("New")]
-                    )
-                  : _vm._e()
+                })
               ],
               2
             )
@@ -46448,9 +46410,29 @@ var render = function() {
                             {
                               staticClass:
                                 "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
+                              attrs: { to: { name: "posts.create" }, exact: "" }
+                            },
+                            [_vm._v("New")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
                               attrs: { to: { name: "posts.drafts" }, exact: "" }
                             },
                             [_vm._v("Drafts")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
+                              attrs: { to: { name: "tags.manage" }, exact: "" }
+                            },
+                            [_vm._v("Tags")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -46570,39 +46552,7 @@ var render = function() {
                 },
                 [_vm._v(_vm._s(page.title))]
               )
-            }),
-            _vm._v(" "),
-            _vm.isAuth
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
-                    attrs: {
-                      to: { name: "tags.manage" },
-                      exact: "",
-                      "active-class": "text-white bg-gray-900"
-                    }
-                  },
-                  [_vm._v("Tags")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.isAuth
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
-                    attrs: {
-                      to: { name: "posts.create" },
-                      exact: "",
-                      "active-class": "text-white bg-gray-900"
-                    }
-                  },
-                  [_vm._v("New")]
-                )
-              : _vm._e()
+            })
           ],
           2
         ),
@@ -46646,9 +46596,33 @@ var render = function() {
                         {
                           staticClass:
                             "block mt-2 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
+                          attrs: { to: { name: "posts.create" }, exact: "" }
+                        },
+                        [_vm._v("New")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isAuth
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "block mt-4 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
                           attrs: { to: { name: "posts.drafts" }, exact: "" }
                         },
                         [_vm._v("Drafts")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isAuth
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "block mt-4 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700",
+                          attrs: { to: { name: "tags.manage" }, exact: "" }
+                        },
+                        [_vm._v("Tags")]
                       )
                     : _vm._e(),
                   _vm._v(" "),

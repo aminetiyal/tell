@@ -31,22 +31,6 @@
                 :key="page.title + '_' + $index"
                 class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
               >{{page.title}}</router-link>
-
-              <router-link
-                :to="{name:'tags.manage'}"
-                exact
-                v-if="isAuth"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                active-class="bg-gray-900 text-white"
-              >Tags</router-link>
-
-              <router-link
-                :to="{name:'posts.create'}"
-                exact
-                v-if="isAuth"
-                class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                active-class="bg-gray-900 text-white"
-              >New</router-link>
             </div>
           </div>
         </div>
@@ -71,10 +55,22 @@
               >
                 <div class="py-1 rounded-md bg-white shadow-xs">
                   <router-link
+                    :to="{name: 'posts.create'}"
+                    exact
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >New</router-link>
+
+                  <router-link
                     :to="{name: 'posts.drafts'}"
                     exact
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >Drafts</router-link>
+
+                  <router-link
+                    :to="{name: 'tags.manage'}"
+                    exact
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Tags</router-link>
 
                   <a
                     href="#"
@@ -127,20 +123,6 @@
           active-class="text-white bg-gray-900"
           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
         >{{page.title}}</router-link>
-        <router-link
-          v-if="isAuth"
-          :to="{name:'tags.manage'}"
-          exact
-          active-class="text-white bg-gray-900"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-        >Tags</router-link>
-        <router-link
-          v-if="isAuth"
-          :to="{name:'posts.create'}"
-          exact
-          active-class="text-white bg-gray-900"
-          class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-        >New</router-link>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700" v-if="isAuth">
         <div class="px-2" v-if="isAuth">
@@ -155,11 +137,23 @@
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Login</a>
           <router-link
-            :to="{name:'posts.drafts'}"
+            :to="{name:'posts.create'}"
             exact
             v-if="isAuth"
             class="block mt-2 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          >New</router-link>
+          <router-link
+            :to="{name:'posts.drafts'}"
+            exact
+            v-if="isAuth"
+            class="block mt-4 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >Drafts</router-link>
+          <router-link
+            :to="{name:'tags.manage'}"
+            exact
+            v-if="isAuth"
+            class="block mt-4 -mb-4 px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+          >Tags</router-link>
           <a
             v-if="isAuth"
             href="#"
