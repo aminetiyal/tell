@@ -16774,7 +16774,7 @@ __webpack_require__.r(__webpack_exports__);
         buttons: true
       }).then(function (confirmed) {
         if (confirmed) {
-          _this3.saveTag();
+          _this3.save();
         }
       });
     },

@@ -159,7 +159,7 @@ export default {
         buttons: true
       }).then(confirmed => {
         if (confirmed) {
-          this.saveTag();
+          this.save();
         }
       });
     },
