@@ -14,7 +14,7 @@ class PostController
     public function index(IndexPostRequest $request)
     {
         $posts = TellPost::live()
-            ->where('title', 'like', '%'.$request->query('search').'%')
+            ->where('title', 'like', '%' . $request->query('search') . '%')
             ->paginate(5);
 
         return PostResource::collection($posts);
@@ -23,7 +23,7 @@ class PostController
     public function drafts(IndexPostRequest $request)
     {
         $posts = TellPost::draft()
-            ->where('title', 'like', '%'.$request->query('search').'%')
+            ->where('title', 'like', '%' . $request->query('search') . '%')
             ->paginate(5);
 
         return PostResource::collection($posts);
@@ -42,6 +42,9 @@ class PostController
 
     public function show(TellPost $post)
     {
+        if (auth()->check()) {
+            return new PostResource($post);
+        }
         return $post->published ? new PostResource($post) : abort(404);
     }
 
