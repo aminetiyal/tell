@@ -51,22 +51,19 @@ export default {
   metaInfo() {
     return {
       meta: [
+        // Twitter Card
+        { name: "twitter:card", content: "summary" },
+        { name: "twitter:title", content: this.post.title },
+        { name: "twitter:description", content: this.post.excerpt },
         {
-          property: "og:url",
-          content: this.currentUrl
+          name: "twitter:image",
+          content: window.location.origin + this.post.image
         },
-        {
-          property: "og:type",
-          content: "article"
-        },
-        {
-          property: "og:title",
-          content: this.post.title
-        },
-        {
-          property: "og:description",
-          content: this.post.excerpt
-        },
+        // Facebook OpenGraph
+        { property: "og:url", content: this.currentUrl },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: this.post.title },
+        { property: "og:description", content: this.post.excerpt },
         {
           property: "og:image",
           content: window.location.origin + this.post.image
