@@ -37,9 +37,6 @@ class TellInstall extends Command
         $this->callSilent('storage:link');
         $this->info('✔ The symbolic link has been created');
 
-        $this->callSilent('vendor:publish', ['--provider' => 'Laravel\Sanctum\SanctumServiceProvider']);
-        $this->info('✔ laravel/sanctum Configuration Published');
-
         $this->callSilent('migrate');
         $this->info('✔ Migrations Executed');
 
