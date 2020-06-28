@@ -14,8 +14,10 @@ class SpaController
         return view('tell::spa', compact('javascriptVars'));
     }
 
-    public function showPost(TellPost $post)
+    public function showPost($slug)
     {
+        $post = TellPost::whereSlug($slug)->first();
+
         $javascriptVars = $this->getJavascriptVariables();
 
         return view('tell::spa', compact('javascriptVars', 'post'));
