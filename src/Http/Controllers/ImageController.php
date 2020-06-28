@@ -23,6 +23,6 @@ class ImageController
 
     public function destroy($image)
     {
-        return Storage::delete('/public/tell/images/' . $image);
+        return Storage::delete(config('tell.storage.path') . $image);
     }
 }
