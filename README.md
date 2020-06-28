@@ -43,9 +43,11 @@ To keep the assets up-to-date and avoid issues in future updates, we highly reco
 
 Please note that this package use [laravel/sanctum](https://laravel.com/docs/sanctum#how-it-works) to authenticate via cookie, in order to avoid authentication problem please follow this [instructions](https://laravel.com/docs/sanctum#installation).
 
+Also this package assume that you already have at least one user on your users table.
+
 ## Usage
 
-Just navigate to /blog/login or to your costum /[prefix](https://github.com/aminetiyal/tell/blob/17b84ff27b5176ca17bca8053aa77f327a27b12a/config/config.php#L17)/login if changed, and authenticate using your default credentials.
+Just navigate to **/blog/login** or to your costum **/[prefix](https://github.com/aminetiyal/tell/blob/17b84ff27b5176ca17bca8053aa77f327a27b12a/config/config.php#L17)/login** if changed, and authenticate using your default credentials.
 
 ## Credits
 
