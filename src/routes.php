@@ -11,7 +11,8 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->group(function () {
         Route::get('/', fn () => '')->name('base');
 
-        Route::post('/login', 'LoginController@login')->name('login');
+        Route::post('/login', 'AuthController@login')->name('login');
+        Route::post('/logout', 'AuthController@logout')->name('logout');
 
         Route::get('/posts/drafts', 'PostController@drafts')->name('posts.drafts');
         Route::apiResource('posts', 'PostController')->parameter('posts', 'post:slug');

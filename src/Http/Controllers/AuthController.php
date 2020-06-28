@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class LoginController
+class AuthController
 {
     public function __construct()
     {
@@ -55,5 +55,16 @@ class LoginController
     protected function guard()
     {
         return Auth::guard();
+    }
+
+    public function logout()
+    {
+        $this->guard()->logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return response()->json(null, 204);
     }
 }

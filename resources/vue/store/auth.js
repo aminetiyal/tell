@@ -1,10 +1,13 @@
 import router from "../router";
+import authService from "../services/AuthService"
 
 const baseUrl = window.Laravel.routes['api.tell.base'];
 
 function redirectHome() {
     if (router.currentRoute.name !== 'posts.index') {
-        router.push({name: 'posts.index'});
+        router.push({
+            name: 'posts.index'
+        });
     }
 }
 
@@ -42,8 +45,10 @@ const authModule = ({
         }
     },
     actions: {
-        login({commit}, credentials) {
-            axios.post(baseUrl+'/login', credentials)
+        login({
+            commit
+        }, credentials) {
+            authService.login(credentials)
                 .then(response => {
                     commit('SET_USER', response.data);
                     redirectHome();
@@ -53,18 +58,21 @@ const authModule = ({
                     console.log(error.response.data.errors);
                 });
         },
-        logout({commit}) {
-            axios.post('/logout')
+        logout({
+            commit
+        }) {
+            axios.post(baseUrl + '/logout')
                 .then(response => {
                     commit('CLEAR_USER');
                     redirectHome();
                 })
                 .catch(error => {
-                    commit('CLEAR_USER');
-                    redirectHome();
+                    console.log(error);
                 })
         },
-        fetchUser({commit}) {
+        fetchUser({
+            commit
+        }) {
             axios.get('/api/user')
                 .then(response => {
                     commit('SET_USER', response.data.data);
