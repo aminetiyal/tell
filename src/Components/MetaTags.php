@@ -39,7 +39,7 @@ class MetaTags extends Component
     private function setImage()
     {
         $this->image = request()->root();
-        $this->image .= (!is_null($this->post) ? $this->post->image : config('tell.nav.logo'));
+        $this->image .= (!is_null($this->post) ? $this->post->image : config('tell.nav.logo', '/vendor/tell/logo.svg'));
     }
 
     private function setUrl()
