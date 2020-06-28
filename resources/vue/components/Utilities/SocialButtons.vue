@@ -48,28 +48,28 @@ export default {
       return window.location.href;
     }
   },
-  metaInfo() {
-    return {
-      meta: [
-        // Twitter Card
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:title", content: this.post.title },
-        { name: "twitter:description", content: this.post.excerpt },
-        {
-          name: "twitter:image",
-          content: window.location.origin + this.post.image
-        },
-        // Facebook OpenGraph
-        { property: "og:url", content: this.currentUrl },
-        { property: "og:type", content: "article" },
-        { property: "og:title", content: this.post.title },
-        { property: "og:description", content: this.post.excerpt },
-        {
-          property: "og:image",
-          content: window.location.origin + this.post.image
-        }
-      ]
-    };
-  }
+//   metaInfo() {
+//     return {
+//       meta: [
+//         // Twitter Card
+//         { name: "twitter:card", content: "summary" },
+//         { name: "twitter:title", content: this.post.title },
+//         { name: "twitter:description", content: this.post.excerpt },
+//         {
+//           name: "twitter:image",
+//           content: window.location.origin + this.post.image
+//         },
+//         // Facebook OpenGraph
+//         { property: "og:url", content: this.currentUrl },
+//         { property: "og:type", content: "article" },
+//         { property: "og:title", content: this.post.title },
+//         { property: "og:description", content: this.post.excerpt },
+//         {
+//           property: "og:image",
+//           content: window.location.origin + this.post.image
+//         }
+//       ]
+//     };
+//   }
 };
 </script>

@@ -30,5 +30,6 @@ Route::namespace('Aminetiyal\Tell\Http\Controllers')
     ->prefix(config('tell.prefix'))
     ->group(function () {
         Route::get('/', 'SpaController@index')->name('spa.page');
+        Route::get('{post:slug}', 'SpaController@showPost')->name('spa.posts.show');
         Route::get('{any}', 'SpaController@index')->where('any', '.*')->name('spa');
     });

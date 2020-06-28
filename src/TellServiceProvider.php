@@ -3,6 +3,7 @@
 namespace Aminetiyal\Tell;
 
 use Aminetiyal\Tell\Console\TellInstall;
+use Aminetiyal\Tell\Components\MetaTags;
 use Illuminate\Support\ServiceProvider;
 
 class TellServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class TellServiceProvider extends ServiceProvider
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tell');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tell');
+        $this->loadViewComponentsAs('tell', [MetaTags::class]);
         $this->loadMigrationsFrom(__DIR__.'/Migrations');
         $this->registerRoutes();
 
