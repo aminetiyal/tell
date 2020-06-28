@@ -7,7 +7,7 @@
           class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900"
         >Sign in to your account</h2>
       </div>
-      <div class="mt-8">
+      <form class="mt-8" @submit="login">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm">
           <div>
@@ -25,6 +25,7 @@
           <div class="-mt-px">
             <input
               v-model="password"
+              v-on:keyup.enter="submit"
               aria-label="Password"
               name="password"
               type="password"
@@ -56,7 +57,7 @@
             >Forgot your password?</a>
           </div>
         </div>
-        
+
         <div class="mt-6">
           <button
             @click="login"
@@ -79,7 +80,7 @@
             Sign in
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
