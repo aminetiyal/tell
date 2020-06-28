@@ -25,7 +25,6 @@
           <div class="-mt-px">
             <input
               v-model="password"
-              v-on:keyup.enter="submit"
               aria-label="Password"
               name="password"
               type="password"
