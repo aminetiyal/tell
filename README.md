@@ -27,7 +27,7 @@ php artisan tell:install
 php artisan migrate
 
 ```
-To keep the assets up-to-date and avoid issues in future updates, add tihis command to the post-autoload-dump scripts in your composer.json file:
+To keep the assets up-to-date and avoid issues in future updates, add this command to the post-autoload-dump scripts in your composer.json file:
 
 ```bash
 {
