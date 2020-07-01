@@ -39,5 +39,8 @@ return [
     'infiniteLoading' => [
         'noMore' => 'No more posts',
         'noResults' => 'No results'
-    ]
+    ],
+
+    /** Google Analytics Tracking Id*/
+    'google_analytics_id' => '',
 ];
