@@ -29,8 +29,11 @@
         </div>
       </div>
     </template>
-    <div v-html="post.body" class="post"></div>
-
+    <div v-html="post.body" class="post">
+      <pre>
+            <code></code>
+            </pre>
+    </div>
     <div class="mt-4">
       <SocialButtons :post="post"></SocialButtons>
     </div>
