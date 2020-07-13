@@ -13,6 +13,8 @@ TELL is a lightweight and full SPA Laravel package built with [Vue](https://gith
 
 You can publish your posts using [CKEDITOR 5](https://github.com/ckeditor/ckeditor5) with tags supported.
 
+## [Preview](https://aminetiyal.com)
+
 ## Installation
 
 You can install the package via composer:
